@@ -22,13 +22,13 @@ public class LoginController {
             User checkUserAndPass = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
             if (checkUserAndPass != null) {
                 res.setStatus(1);
-                res.setMessage("login success");
+                res.setMessage("Login success");
                 res.setData(user);
                 return checkUserAndPass;
 
             } else {
                 res.setStatus(0);
-                res.setMessage("login fail");
+                res.setMessage("Login fail");
             }
 
         } catch (Exception err) {
@@ -52,7 +52,7 @@ public class LoginController {
         APIResponse res = new APIResponse();
         Optional<User> credentials = Optional.ofNullable(userRepository.findByUsername(username));
         res.setData(credentials);
-        res.setMessage("search complete");
+        res.setMessage("search username complete");
         return res;
     }
     @PostMapping("/update/{id}")
@@ -61,7 +61,7 @@ public class LoginController {
         Optional<User> getId = userRepository.findById(user.getId());
         userRepository.save(user);
         response.setData(getId);
-        response.setMessage("update success");
+        response.setMessage("update complete");
         return response;
     }
     @PostMapping("/search/name")
@@ -69,6 +69,7 @@ public class LoginController {
         APIResponse response = new APIResponse();
         List<User> getName = this.userRepository.findByName(name);
         response.setData(getName);
+        response.setMessage("search name complete");
         return response;
     }
     @GetMapping("/search")
@@ -76,6 +77,7 @@ public class LoginController {
         APIResponse response = new APIResponse();
         List<User> getAllname = userRepository.findAll();
         response.setData(getAllname);
+        response.setMessage("search ListAllName complete");
         return  response;
     }
 

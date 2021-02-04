@@ -29,7 +29,7 @@ public class RegisterController {
                 res.setMessage("Success");
             } else {
                 res.setStatus(0);
-                res.setMessage("fail");
+                res.setMessage("have account");
             }
 
         } catch (Exception err) {
