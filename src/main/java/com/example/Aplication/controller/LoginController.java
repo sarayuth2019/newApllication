@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/Login", method = RequestMethod.GET)
+@RequestMapping(value = "/User",method = RequestMethod.GET)
 public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/login")
+    @PostMapping("/Login")
     public Object login(User user) {
         APIResponse res = new APIResponse();
         try {
@@ -47,7 +47,7 @@ public class LoginController {
         return response;
     }
 
-    @GetMapping ("/search")
+    @GetMapping ("/search/username")
     public Object nameList(@Param("username") String username) {
         APIResponse res = new APIResponse();
         Optional<User> credentials = Optional.ofNullable(userRepository.findByUsername(username));
@@ -64,14 +64,14 @@ public class LoginController {
         response.setMessage("update success");
         return response;
     }
-    @PostMapping("/ListName/Byname")
+    @PostMapping("/search/name")
     public Object test(User user, String name){
         APIResponse response = new APIResponse();
         List<User> getName = this.userRepository.findByName(name);
         response.setData(getName);
         return response;
     }
-    @GetMapping("/ListName")
+    @GetMapping("/search")
     public Object ListAll(User user){
         APIResponse response = new APIResponse();
         List<User> getAllname = userRepository.findAll();
