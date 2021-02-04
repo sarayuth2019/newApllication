@@ -43,7 +43,8 @@ public class LoginController {
         APIResponse response = new APIResponse();
         Optional<User> getId = userRepository.findById(user.getId());
         response.setData(user.getId());
-        return getId;
+        response.setMessage("search ID complete");
+        return response;
     }
 
     @GetMapping ("/search")
