@@ -3,6 +3,7 @@ package com.example.Aplication.controller;
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.UserRepository;
 import com.example.Aplication.model.table.User;
+import com.sun.xml.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class LoginController {
         return res;
     }
     @PostMapping("/update/{id}")
-    public Object updateUser(User user,@PathVariable Long id){
+    public Object updateUser(User user,@PathVariable Long id) {
         APIResponse response = new APIResponse();
         Optional<User> getId = userRepository.findById(user.getId());
         userRepository.save(user);
@@ -64,10 +65,17 @@ public class LoginController {
         response.setMessage("update complete");
         return response;
     }
+    /*@PostMapping("update/name/{id}")
+    public Object updateName(User user){
+        APIResponse response = new APIResponse();
+        Optional<User> getName = userRepository.findOne(ID);
+        response.setData(getName);
+        userRepository.save();
+    }*/
     @PostMapping("/search/name")
     public Object test(User user, String name){
         APIResponse response = new APIResponse();
-        List<User> getName = this.userRepository.findByName(name);
+        User getName = this.userRepository.findByName(name);
         response.setData(getName);
         response.setMessage("search name complete");
         return response;
