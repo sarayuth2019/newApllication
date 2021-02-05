@@ -24,8 +24,8 @@ public class LoginController {
             if (checkUserAndPass != null) {
                 res.setStatus(1);
                 res.setMessage("Login success");
-                res.setData(user);
-                return checkUserAndPass;
+                res.setData(checkUserAndPass);
+                return res;
 
             } else {
                 res.setStatus(0);
