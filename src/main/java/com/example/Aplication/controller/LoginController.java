@@ -42,7 +42,7 @@ public class LoginController {
     public Object IdList(User user, @PathVariable Long id) {
         APIResponse response = new APIResponse();
         Optional<User> getId = userRepository.findById(user.getId());
-        response.setData(user.getId());
+        response.setData(getId);
         response.setMessage("search ID complete");
         return response;
     }
