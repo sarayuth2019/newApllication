@@ -29,7 +29,7 @@ public class User {
     @Column
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private Byte[] picture;
+    private String picture;
     @Column
     private Date dateRegister = new Date();
 
