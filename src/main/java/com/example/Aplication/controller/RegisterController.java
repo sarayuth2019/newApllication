@@ -18,21 +18,20 @@ public class RegisterController {
     private UserRepository userRepository;
 
     @PostMapping("/register")
-    public Object register(User user, @RequestParam String username,@RequestParam String password) {
+    public Object register(User user) {
         APIResponse res = new APIResponse();
         try {
             User dbUser = userRepository.findByUsername(user.getUsername());
             if (dbUser == null) {
                 userRepository.save(user);
                 res.setStatus(1);
-                res.setData(dbUser);
+                res.setData(user);
                 res.setMessage("Success");
-                return res;
             } else {
                 res.setStatus(0);
                 res.setMessage("have account");
-                return res;
             }
+            return res;
 
         } catch (Exception err) {
             res.setMessage("error" + err.toString());

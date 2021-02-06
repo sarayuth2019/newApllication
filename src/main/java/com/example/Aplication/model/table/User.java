@@ -27,8 +27,7 @@ public class User {
     @Column
     private String email;
     @Column
-    @Lob
-    private Byte[] picture;
+    private String picture;
     @Column
     private Date dateRegister = new Date();
 
