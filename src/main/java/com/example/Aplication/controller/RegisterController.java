@@ -25,11 +25,13 @@ public class RegisterController {
             if (dbUser == null) {
                 userRepository.save(user);
                 res.setStatus(1);
-                res.setData(user);
+                res.setData(dbUser);
                 res.setMessage("Success");
+                return res;
             } else {
                 res.setStatus(0);
                 res.setMessage("have account");
+                return res;
             }
 
         } catch (Exception err) {
