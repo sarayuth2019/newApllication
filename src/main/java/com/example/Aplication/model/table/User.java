@@ -27,7 +27,9 @@ public class User {
     @Column
     private String email;
     @Column
-    private String picture;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private Byte[] picture;
     @Column
     private Date dateRegister = new Date();
 
