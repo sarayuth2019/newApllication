@@ -73,9 +73,9 @@ public class LoginController {
         userRepository.save();
     }*/
     @PostMapping("/search/name")
-    public Object test(User user, String name){
+    public Object test(String name){
         APIResponse response = new APIResponse();
-        User getName = this.userRepository.findByName(name);
+        List<User> getName =  this.userRepository.findByName(name);
         response.setData(getName);
         response.setMessage("search name complete");
         return response;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -14,10 +15,9 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Long> {
     User findByUsername (String username);
     User findByUsernameAndPassword (String username,String password);
-    User findByName(String name);
+    List<User> findByName(String name);
     Optional<User> findById(Long id);
-    /* User findByName(String name);
-       Optional<User>findByUsername(String username); */
+    /* Optional<User>findByUsername(String username); */
 }
 
 
