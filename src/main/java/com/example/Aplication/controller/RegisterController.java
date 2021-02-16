@@ -1,21 +1,21 @@
 package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
+import com.example.Aplication.model.service.PostRepository;
 import com.example.Aplication.model.service.UserRepository;
 import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/Register")
 public class RegisterController {
     @Autowired
     private UserRepository userRepository;
+
 
     @PostMapping("/register")
     public Object register(User user) {
@@ -24,6 +24,7 @@ public class RegisterController {
             User dbUser = userRepository.findByUsername(user.getUsername());
             if (dbUser == null) {
                 userRepository.save(user);
+                System.out.print(user);
                 res.setStatus(1);
                 res.setData(user);
                 res.setMessage("Success");

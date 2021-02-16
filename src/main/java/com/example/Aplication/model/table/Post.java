@@ -1,28 +1,35 @@
 package com.example.Aplication.model.table;
 
 import lombok.Data;
-import org.springframework.data.repository.cdi.Eager;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@ToString
 @Data
 @Entity(name = "post_entity")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private Long id;
     @Column
-    private String name_post;
+    private String textPost;
     @Column
-    private String surname_post;
-    @Column
-    private String textpost;
-    @Column
-    private String picturepost;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private String picturePost;
+    @Column(name = "name_post")
+    private String name;
+    @Column(name = "surname_post")
+    private String surname;
+    @Column(name = "picture_user")
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private String picture;
     @Column
     private Date datePost = new Date();
-
-
-
+    @Column
+    private Long user_id;
 }

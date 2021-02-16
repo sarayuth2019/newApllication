@@ -7,30 +7,32 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @ToString
 @Data
 @Entity(name = "user_entity")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
     @Column
-    private String username;
+    private  String username;
     @Column
-    private String password;
+    private  String password;
     @Column
-    private String name;
+    private  String name;
     @Column
-    private String surname;
+    private  String surname;
     @Column
-    private String birthday;
+    private  String birthday;
     @Column
-    private String email;
+    private  String email;
     @Column
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private String picture;
+    private  String picture;
     @Column
-    private Date dateRegister = new Date();
+    private Date dateRegister = new Date() ;
 
 }
