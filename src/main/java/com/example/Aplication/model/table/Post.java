@@ -22,6 +22,14 @@ public class Post {
     private String picturePost;
     @Column
     private Date datePost = new Date();
+    @Column(name = "name_post")
+    private String name;
+    @Column(name = "surname_post")
+    private String surname;
+    @Column(name = "picture_user")
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private String picture;
     @Column
     private Long user_id;
 }
