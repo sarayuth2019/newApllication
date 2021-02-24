@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional
-public interface UserRepository extends JpaRepository<User ,Long> {
-    User findByUsername (String username);
-    User findByUsernameAndPassword (String username,String password);
-    List<User> findByName(String name);
-    Optional<User> findById(Long id);
+public interface UserRepository extends JpaRepository<User ,Integer> {
+    User findByEmail (String email);
+    User findByEmailAndPassword (String email,String password);
+    Optional<User> findById(int id);
 
 }
 

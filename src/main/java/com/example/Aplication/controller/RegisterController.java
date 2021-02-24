@@ -1,7 +1,6 @@
 package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
-import com.example.Aplication.model.service.PostRepository;
 import com.example.Aplication.model.service.UserRepository;
 import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class RegisterController {
     public Object register(User user) {
         APIResponse res = new APIResponse();
         try {
-            User dbUser = userRepository.findByUsername(user.getUsername());
+            User dbUser = userRepository.findByEmail(user.getEmail());
             if (dbUser == null) {
                 userRepository.save(user);
                 System.out.print(user);
