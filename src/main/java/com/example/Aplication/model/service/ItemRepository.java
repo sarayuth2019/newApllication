@@ -1,7 +1,10 @@
 package com.example.Aplication.model.service;
 
-import com.example.Aplication.model.table.Item;
+import com.example.Aplication.model.table.Items;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends JpaRepository<Item,Integer> {
+import java.util.Optional;
+
+public interface ItemRepository extends JpaRepository<Items,Integer> {
+    Optional<Items> findById(int id);
 }

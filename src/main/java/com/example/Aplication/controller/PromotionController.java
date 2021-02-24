@@ -4,10 +4,7 @@ import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.PromotionRepository;
 import com.example.Aplication.model.table.Promotion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,14 @@ public class PromotionController {
         List<Promotion> getPromotion = promotionRepository.findAll();
         res.setMessage("List Promotion");
         res.setData(getPromotion);
+        return res;
+    }
+    @GetMapping("/delete/{id}")
+    public Object delete(Promotion promotion, @PathVariable int id){
+        APIResponse res = new APIResponse();
+        promotionRepository.delete(promotion);
+        res.setMessage("delete Promotion success...");
+        res.setData(promotion);
         return res;
     }
 }

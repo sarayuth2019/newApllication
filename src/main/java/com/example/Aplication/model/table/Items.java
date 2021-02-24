@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @ToString
 @Entity(name = "Items_entity")
-public class Item {
+public class Items {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Items_id")
