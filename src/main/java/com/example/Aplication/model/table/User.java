@@ -20,15 +20,15 @@ public class User {
     @Column(name = "user_id")
     private int id;
     @Column
-    @Size(max = 16,min = 8)
+    @Size(max = 16)
     @NotNull
     private  String password;
     @Column
-    @Size(max = 32,min = 16)
+    @Size(max = 16)
     @NotNull
     private  String name;
     @Column
-    @Size(max = 32,min = 16)
+    @Size(max = 16)
     @NotNull
     private  String surname;
     @Column
