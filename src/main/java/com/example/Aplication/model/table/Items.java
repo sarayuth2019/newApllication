@@ -1,11 +1,15 @@
 package com.example.Aplication.model.table;
 
-import com.sun.istack.NotNull;
+
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
+import java.util.List;
 
 @Data
 @ToString
@@ -19,8 +23,7 @@ public class Items {
     @NotNull
     private String name;
     @Column(name = "Image_items")
-    @NotNull
-    @Lob@Basic(fetch = FetchType.LAZY)
+    @Lob
     private String Image;
     @Column
     @NotNull
@@ -42,4 +45,6 @@ public class Items {
     private int user;
     @Column
     private Date date = new Date();
+
+
 }
