@@ -30,6 +30,9 @@ public class Items {
     private int rating;
     @Column
     @NotNull
+    private int count_rating;
+    @Column
+    @NotNull
     private int price;
     @Column
     @NotNull
