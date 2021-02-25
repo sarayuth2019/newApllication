@@ -51,7 +51,7 @@ public class ItemController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Items> getIdUser = itemRepository.findByUser(user);
+        List<Items> getIdUser = this.itemRepository.findByUser(user);
         res.setData(getIdUser);
         res.setMessage("list order by user_id success....");
         res.setStatus(1);
