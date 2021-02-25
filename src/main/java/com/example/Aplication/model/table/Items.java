@@ -20,8 +20,8 @@ public class Items {
     @Column(name = "Name_items")
     private String name;
     @Column(name = "Image_items")
-    @Basic(fetch = FetchType.LAZY)
-    private String Image;
+    @Lob
+    private byte[] Image;
     @Column
     private String description;
     @Column
