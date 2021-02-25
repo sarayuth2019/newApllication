@@ -21,7 +21,7 @@ public class Items {
     private String name;
     @Column(name = "Image_items")
     @Lob
-    private byte[] Image;
+    private String Image;
     @Column
     private String description;
     @Column
