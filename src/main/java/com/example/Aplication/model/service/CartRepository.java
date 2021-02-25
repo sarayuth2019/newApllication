@@ -1,7 +1,7 @@
-package com.example.Aplication.model.service;
+
+/*package com.example.Aplication.model.service;
 
 import com.example.Aplication.model.table.Cart;
-import com.example.Aplication.model.table.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,3 +12,4 @@ public interface CartRepository extends JpaRepository<Cart,Integer> {
     List<Cart> findByName(String name);
     List<Cart>findByUser(int user);
 }
+*/

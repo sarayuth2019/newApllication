@@ -4,7 +4,6 @@ import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.ItemRepository;
 import com.example.Aplication.model.table.Cart;
 import com.example.Aplication.model.table.Items;
-import com.example.Aplication.model.table.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,7 @@ public class ItemController {
     @PostMapping("/find/name")
     public Object find(String name){
         APIResponse res = new APIResponse();
-        List<Cart> getList = this.itemRepository.findByName(name);
+        List<Items> getList = this.itemRepository.findByName(name);
         res.setData(getList);
         res.setMessage("Find By name Order...");
         res.setStatus(1);
@@ -52,7 +51,7 @@ public class ItemController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Cart> getIdUser = itemRepository.findByUser(user);
+        List<Items> getIdUser = itemRepository.findByUser(user);
         res.setData(getIdUser);
         res.setMessage("list order by user_id success....");
         res.setStatus(1);

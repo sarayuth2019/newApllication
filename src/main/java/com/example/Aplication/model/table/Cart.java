@@ -6,7 +6,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-@NotNull
+
 @Data
 @ToString
 @Entity(name = "cart_entity")
