@@ -34,9 +34,9 @@ public class Items {
     @Column
     @NotNull
     private int price;
-    @Column
+    @Column(name = "user_id")
     @NotNull
-    private int user_id;
+    private int user;
     @Column
     private Date date = new Date();
 }

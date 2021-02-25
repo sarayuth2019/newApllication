@@ -1,7 +1,9 @@
 package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
-import com.example.Aplication.model.service.OrderRepository;
+import com.example.Aplication.model.service.CartRepository;
+import com.example.Aplication.model.table.Cart;
+import com.example.Aplication.model.table.Items;
 import com.example.Aplication.model.table.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,41 +11,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Order")
-public class OrderController {
+@RequestMapping("/Cart")
+public class CartController {
     @Autowired
-    private OrderRepository orderRepository;
+    private CartRepository cartRepository;
     @PostMapping("/save")
-    public Object save(Order order){
+    public Object save(Cart cart){
         APIResponse res = new APIResponse();
-        orderRepository.save(order);
+        cartRepository.save(cart);
+        res.setData(cart);
         res.setMessage("save success...");
         res.setStatus(1);
-        res.setData(order);
         return res;
     }
     @GetMapping("/list")
     public Object list(){
         APIResponse res = new APIResponse();
-        List<Order> getOrder = orderRepository.findAll();
-        res.setData(getOrder);
-        res.setStatus(1);
-        res.setMessage("List Order....");
+        List<Cart>getList = cartRepository.findAll();
+        res.setData(getList);
+        res.setMessage("List All...");
         return res;
     }
     @GetMapping("/delete/{id}")
-    public Object delete(Order order, @PathVariable int id){
+    public Object delete(Cart cart, @PathVariable int id){
         APIResponse res = new APIResponse();
-        orderRepository.delete(order);
-        res.setData(order);
-        res.setStatus(1);
-        res.setMessage("delete success...");
+        cartRepository.delete(cart);
+        res.setData(cart);
+        res.setMessage("delete items success....");
         return res;
     }
     @PostMapping("/find/name")
     public Object find(String name){
         APIResponse res = new APIResponse();
-        List<Order>getList = this.orderRepository.findByName(name);
+        List<Cart> getList = this.cartRepository.findByName(name);
         res.setData(getList);
         res.setMessage("Find By name Order...");
         res.setStatus(1);
@@ -52,7 +52,7 @@ public class OrderController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Order>getIdUser = orderRepository.findByUser(user);
+        List<Cart> getIdUser = cartRepository.findByUser(user);
         res.setData(getIdUser);
         res.setMessage("list order by user_id success....");
         res.setStatus(1);

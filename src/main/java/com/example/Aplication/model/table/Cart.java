@@ -9,16 +9,19 @@ import java.util.Date;
 
 @Data
 @ToString
-@Entity(name = "order_entity")
-public class Order {
+@Entity(name = "cart_entity")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "cart_id")
     private int id;
-    @Column(name = "name_order")
+    @Column
+    @NotNull
+    private int status;
+    @Column(name = "name_cart")
     @NotNull
     private String name;
-    @Column(name = "Image_order")
+    @Column(name = "Image_cart")
     @NotNull
     @Lob
     @Basic(fetch = FetchType.LAZY)
