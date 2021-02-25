@@ -24,6 +24,12 @@ public class Items {
     private String Image;
     @Column
     @NotNull
+    private String description;
+    @Column
+    @NotNull
+    private int rating;
+    @Column
+    @NotNull
     private int price;
     @Column
     @NotNull
