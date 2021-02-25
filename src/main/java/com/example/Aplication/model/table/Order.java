@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
-@NotNull
+
 @Data
 @ToString
 @Entity(name = "order_entity")
