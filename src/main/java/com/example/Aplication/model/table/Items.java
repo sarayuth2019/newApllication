@@ -34,6 +34,9 @@ public class Items {
     @Column
     @NotNull
     private int price;
+    @Column
+    @NotNull
+    private String location;
     @Column(name = "user_id")
     @NotNull
     private int user;
