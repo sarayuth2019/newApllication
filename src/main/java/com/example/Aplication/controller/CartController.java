@@ -3,6 +3,7 @@ package com.example.Aplication.controller;
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.CartRepository;
 import com.example.Aplication.model.table.Cart;
+import com.example.Aplication.model.table.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +44,7 @@ public class CartController {
         APIResponse res = new APIResponse();
         List<Cart> getList = this.cartRepository.findByName(name);
         res.setData(getList);
-        res.setMessage("Find By name Order...");
+        res.setMessage("Find By name Cart...");
         res.setStatus(1);
         return res;
     }
@@ -52,8 +53,17 @@ public class CartController {
         APIResponse res = new APIResponse();
         List<Cart> getIdUser = cartRepository.findByUser(user);
         res.setData(getIdUser);
-        res.setMessage("list order by user_id success....");
+        res.setMessage("list cart by user_id success....");
         res.setStatus(1);
+        return res;
+    }
+    @PostMapping("/find/customer")
+    public Object findCustomerId(int customer){
+        APIResponse res = new APIResponse();
+        List<Cart>getCustomer = cartRepository.findByCustomer(customer);
+        res.setData(getCustomer);
+        res.setStatus(1);
+        res.setMessage("List customerId....");
         return res;
     }
 }

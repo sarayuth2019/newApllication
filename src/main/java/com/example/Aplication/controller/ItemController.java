@@ -57,4 +57,13 @@ public class ItemController {
         res.setStatus(1);
         return res;
     }
+    @PostMapping("find/group")
+    public Object findGroup(int group){
+        APIResponse res = new APIResponse();
+        List<Items> getGroup = this.itemRepository.findByGroup(group);
+        res.setMessage("List Group Items....");
+        res.setData(getGroup);
+        res.setStatus(1);
+        return res;
+    }
 }

@@ -25,8 +25,8 @@ public class Order {
     private int number;
     @Column
     private int price;
-    @Column
-    private int customer_id;
+    @Column(name = "customer_id")
+    private int customer;
     @Column(name = "user_id")
     private int user;
     @Column

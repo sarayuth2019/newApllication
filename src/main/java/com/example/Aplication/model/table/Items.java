@@ -17,8 +17,8 @@ public class Items {
     @Lob
     @Basic(fetch = FetchType.EAGER)
     private String Image;
-    @Column
-    private int group_items;
+    @Column(name = "group_items")
+    private int group;
     @Column
     private String description;
     @Column

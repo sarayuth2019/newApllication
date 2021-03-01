@@ -54,8 +54,17 @@ public class OrderController {
         APIResponse res = new APIResponse();
         List<Order>getIdUser = orderRepository.findByUser(user);
         res.setData(getIdUser);
-        res.setMessage("list order by user_id success....");
+        res.setMessage("List Order By user_id success....");
         res.setStatus(1);
+        return res;
+    }
+    @PostMapping("/find/customer")
+    public Object findCustomerId(int customer){
+        APIResponse res = new APIResponse();
+        List<Order>getCustomer = orderRepository.findByCustomer(customer);
+        res.setData(getCustomer);
+        res.setStatus(1);
+        res.setMessage("List customerId....");
         return res;
     }
 }
