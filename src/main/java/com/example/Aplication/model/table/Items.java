@@ -1,14 +1,8 @@
 package com.example.Aplication.model.table;
-
-
 import lombok.Data;
 import lombok.ToString;
-
 import javax.persistence.*;
-
 import java.util.Date;
-
-
 @Data
 @ToString
 @Entity(name = "Items_entity")
@@ -21,6 +15,7 @@ public class Items {
     private String name;
     @Column(name = "Image_items")
     @Lob
+    @Basic(fetch = FetchType.EAGER)
     private String Image;
     @Column
     private String description;
