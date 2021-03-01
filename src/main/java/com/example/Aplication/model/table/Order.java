@@ -22,6 +22,8 @@ public class Order {
     @Basic(fetch = FetchType.LAZY)
     private String Image;
     @Column
+    private int number;
+    @Column
     private int price;
     @Column
     private int customer_id;

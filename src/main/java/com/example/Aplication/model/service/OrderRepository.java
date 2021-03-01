@@ -2,10 +2,12 @@ package com.example.Aplication.model.service;
 
 import com.example.Aplication.model.table.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
 public interface OrderRepository extends JpaRepository<Order,Integer> {
     Optional<Order> findById(int id);
     List<Order>findByName(String name);

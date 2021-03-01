@@ -18,6 +18,8 @@ public class Items {
     @Basic(fetch = FetchType.EAGER)
     private String Image;
     @Column
+    private int group_items;
+    @Column
     private String description;
     @Column
     private int rating;
