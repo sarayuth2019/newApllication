@@ -1,8 +1,6 @@
 package com.example.Aplication.controller;
-
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.ItemRepository;
-import com.example.Aplication.model.table.Cart;
 import com.example.Aplication.model.table.Items;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

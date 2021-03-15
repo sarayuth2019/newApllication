@@ -31,6 +31,8 @@ public class Cart {
     private int customer;
     @Column(name = "user_id")
     private int user;
+    @Column(name = "item_id")
+    private int item;
     @Column
     private Date date = new Date();
 }
