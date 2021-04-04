@@ -3,7 +3,6 @@ package com.example.Aplication.controller;
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.CartRepository;
 import com.example.Aplication.model.table.Cart;
-import com.example.Aplication.model.table.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +22,7 @@ public class CartController {
         res.setStatus(1);
         return res;
     }
+
     @GetMapping("/list")
     public Object list(){
         APIResponse res = new APIResponse();
@@ -66,4 +66,5 @@ public class CartController {
         res.setMessage("List customerId....");
         return res;
     }
+
 }
