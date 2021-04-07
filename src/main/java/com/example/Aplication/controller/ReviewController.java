@@ -34,7 +34,7 @@ public class ReviewController {
         res.setMessage("find ItemsId...");
         return res;
     }
-    @GetMapping("list")
+    @GetMapping("/list")
     public Object list(){
         APIResponse res = new APIResponse();
         reviewRepository.findAll();
