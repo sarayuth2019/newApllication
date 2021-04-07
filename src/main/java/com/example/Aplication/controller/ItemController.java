@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/Item")
@@ -19,6 +20,15 @@ public class ItemController {
         res.setData(item);
         res.setMessage("save success");
         res.setStatus(0);
+        return res;
+    }
+    @GetMapping("/list/item")
+    public Object listItem(int id){
+        APIResponse res = new APIResponse();
+        Optional<Items> getItem = itemRepository.findById(id);
+        res.setData(getItem);
+        res.setMessage("success");
+        res.setStatus(1);
         return res;
     }
     @GetMapping("/list")
