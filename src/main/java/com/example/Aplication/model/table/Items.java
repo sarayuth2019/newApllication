@@ -22,10 +22,6 @@ public class Items {
     @Column
     private String description;
     @Column
-    private int rating;
-    @Column
-    private int count_rating;
-    @Column
     private int price;
     @Column
     private String location;
