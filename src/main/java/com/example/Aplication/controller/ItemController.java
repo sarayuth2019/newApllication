@@ -22,7 +22,7 @@ public class ItemController {
         res.setStatus(0);
         return res;
     }
-    @GetMapping("/list/item")
+    @PostMapping("/list/item")
     public Object listItem(int id){
         APIResponse res = new APIResponse();
         Optional<Items> getItem = itemRepository.findById(id);
