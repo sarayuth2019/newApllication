@@ -28,5 +28,11 @@ public class Items {
     @Column(name = "user_id")
     private int user;
     @Column
+    private int discount;
+    @Column
+    private int count_promotion;
+    @Column
+    private int status_promotion;
+    @Column
     private Date date = new Date();
 }
