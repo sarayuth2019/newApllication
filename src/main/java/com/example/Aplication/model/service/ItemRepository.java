@@ -13,4 +13,5 @@ public interface ItemRepository extends JpaRepository<Items,Integer> {
     List<Items> findByName(String name);
     List<Items>findByUser(int user);
     List<Items>findByGroup(int group);
+    List<Items>findByStatus(int status);
 }

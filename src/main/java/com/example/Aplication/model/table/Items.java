@@ -31,8 +31,8 @@ public class Items {
     private int discount;
     @Column
     private int count_promotion;
-    @Column
-    private int status_promotion;
+    @Column(name = "status_promotion")
+    private int status;
     @Column
     private Date date = new Date();
 }

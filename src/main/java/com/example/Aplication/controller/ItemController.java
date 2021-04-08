@@ -74,4 +74,13 @@ public class ItemController {
         res.setStatus(1);
         return res;
     }
+    @PostMapping("find/status")
+    public Object findStatus(int status){
+        APIResponse res = new APIResponse();
+        List<Items> getStatus = this.itemRepository.findByStatus(status);
+        res.setStatus(1);
+        res.setData(getStatus);
+        res.setMessage("List StatusPromotion...");
+        return res;
+    }
 }
