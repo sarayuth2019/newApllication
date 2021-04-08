@@ -75,9 +75,9 @@ public class ItemController {
         return res;
     }
     @PostMapping("find/status")
-    public Object findStatus(int status){
+    public Object findStatus(int promotion){
         APIResponse res = new APIResponse();
-        List<Items> getStatus = this.itemRepository.findByStatus(status);
+        List<Items> getStatus = this.itemRepository.findByPromotion(promotion);
         res.setStatus(1);
         res.setData(getStatus);
         res.setMessage("List StatusPromotion...");

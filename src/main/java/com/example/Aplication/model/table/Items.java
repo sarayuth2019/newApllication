@@ -32,7 +32,7 @@ public class Items {
     @Column
     private int count_promotion;
     @Column(name = "status_promotion")
-    private int status;
+    private int promotion;
     @Column
     private Date date = new Date();
 }
