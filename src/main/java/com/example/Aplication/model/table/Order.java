@@ -15,6 +15,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private int id;
+    @Column
+    private int status;
     @Column(name = "name_order")
     private String name;
     @Column(name = "Image_order")
