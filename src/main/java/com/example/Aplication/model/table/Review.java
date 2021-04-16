@@ -19,7 +19,7 @@ public class Review {
     @Column(name = "user_id")
     private int user;
     @Column
-    private int rating;
+    private double rating;
     @Column
     private String content;
     @Column
