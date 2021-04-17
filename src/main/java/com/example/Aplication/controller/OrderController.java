@@ -67,13 +67,13 @@ public class OrderController {
         res.setMessage("List customerId....");
         return res;
     }
-    @PostMapping("/find/status")
-    public Object findStatus(int status){
+    @PostMapping("/find/user/{user}")
+    public Object findstatus(Order order,@PathVariable int user){
         APIResponse res = new APIResponse();
-        List<Order>getStatus = orderRepository.findByStatus(status);
-        res.setData(getStatus);
+        List<Order> checkstatus = orderRepository.findByStatusAndUser(order.getStatus(),order.getUser());
+        res.setMessage("find success...");
         res.setStatus(1);
-        res.setMessage("Find status...");
+        res.setData(checkstatus);
         return res;
     }
 }
