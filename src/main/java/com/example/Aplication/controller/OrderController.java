@@ -67,4 +67,13 @@ public class OrderController {
         res.setMessage("List customerId....");
         return res;
     }
+    @PostMapping("/find/status")
+    public Object findStatus(int status){
+        APIResponse res = new APIResponse();
+        List<Order>getStatus = orderRepository.findByCustomer(status);
+        res.setData(getStatus);
+        res.setStatus(1);
+        res.setMessage("Find status...");
+        return res;
+    }
 }
