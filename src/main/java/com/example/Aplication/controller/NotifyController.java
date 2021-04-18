@@ -1,0 +1,47 @@
+package com.example.Aplication.controller;
+
+import com.example.Aplication.model.bean.APIResponse;
+import com.example.Aplication.model.service.BackupNotifyRepository;
+import com.example.Aplication.model.service.NotifyRepository;
+import com.example.Aplication.model.table.BackupNotify;
+import com.example.Aplication.model.table.Notify;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+@RestController
+@RequestMapping("/Notify")
+public class NotifyController {
+    @Autowired
+    private NotifyRepository notifyRepository;
+
+    @PostMapping("/save")
+    public Object save(Notify notify){
+        APIResponse res = new APIResponse();
+        notifyRepository.save(notify);
+        res.setData(notify);
+        res.setMessage("save success...");
+        res.setStatus(1);
+        return res;
+    }
+    @GetMapping("/list")
+    public Object list(){
+        APIResponse res = new APIResponse();
+        List<Notify> getList = notifyRepository.findAll();
+        res.setData(getList);
+        res.setMessage("List All...");
+        return res;
+    }
+    @GetMapping("/delete")
+    public Object delete(Notify notify){
+        APIResponse res = new APIResponse();
+        notifyRepository.deleteAll();
+        res.setStatus(1);
+        res.setData(notify);
+        res.setMessage("delete success....");
+        return res;
+    }
+}
