@@ -3,7 +3,6 @@ package com.example.Aplication.controller;
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.BackupNotifyRepository;
 import com.example.Aplication.model.table.BackupNotify;
-import com.example.Aplication.model.table.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +31,14 @@ public class BackupNotifyController {
         res.setMessage("List All...");
         return res;
     }
-    @GetMapping("/delete")
-    public Object delete(BackupNotify backupNotify){
+
+    @PostMapping("/list/notify")
+    public Object Notify(int user,int customer){
         APIResponse res = new APIResponse();
-        backupRepository.deleteAll();
+        List<BackupNotify> getList = backupRepository.findByUserAndCustomer(user,customer);
         res.setStatus(1);
-        res.setData(backupNotify);
-        res.setMessage("delete success....");
+        res.setData(getList);
+        res.setMessage("List Notify...");
         return res;
     }
 }

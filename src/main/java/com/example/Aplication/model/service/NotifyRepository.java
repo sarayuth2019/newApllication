@@ -7,4 +7,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface NotifyRepository extends JpaRepository<Notify,Integer> {
+    int deleteByUser(int user);
 }

@@ -35,13 +35,13 @@ public class NotifyController {
         res.setMessage("List All...");
         return res;
     }
-    @GetMapping("/delete")
-    public Object delete(Notify notify){
+    @PostMapping("/delete/user")
+    public Object delete(int user){
         APIResponse res = new APIResponse();
-        notifyRepository.deleteAll();
+        notifyRepository.deleteByUser(user);
         res.setStatus(1);
-        res.setData(notify);
-        res.setMessage("delete success....");
+        res.setData(user);
+        res.setMessage("delete user success....");
         return res;
     }
 }

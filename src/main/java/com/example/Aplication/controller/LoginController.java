@@ -2,9 +2,12 @@ package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.UserRepository;
+import com.example.Aplication.model.table.Items;
 import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @RestController
@@ -33,6 +36,15 @@ public class LoginController {
             res.setData(0);
             res.setMessage("Error" + err.toString());
         }
+        return res;
+    }
+    @PostMapping("/list/id")
+    public Object listId(int id){
+        APIResponse res = new APIResponse();
+        Optional<User> getId = userRepository.findById(id);
+        res.setData(getId);
+        res.setMessage("success");
+        res.setStatus(1);
         return res;
     }
 
