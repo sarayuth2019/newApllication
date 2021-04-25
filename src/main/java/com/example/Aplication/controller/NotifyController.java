@@ -27,12 +27,20 @@ public class NotifyController {
         res.setStatus(1);
         return res;
     }
-    @GetMapping("/list")
-    public Object list(){
+    @PostMapping("/list/user")
+    public Object list(int user){
         APIResponse res = new APIResponse();
-        List<Notify> getList = notifyRepository.findAll();
+        List<Notify> getList = notifyRepository.findByUser(user);
         res.setData(getList);
-        res.setMessage("List All...");
+        res.setMessage("List User...");
+        return res;
+    }
+    @PostMapping("/list/customer")
+    public Object list1(int customer){
+        APIResponse res = new APIResponse();
+        List<Notify> getList = notifyRepository.findByCustomer(customer);
+        res.setMessage("List Customer...");
+        res.setData(getList);
         return res;
     }
     @PostMapping("/delete/user")
@@ -42,6 +50,13 @@ public class NotifyController {
         res.setStatus(1);
         res.setData(user);
         res.setMessage("delete user success....");
+        return res;
+    }
+    @GetMapping("/list")
+    public Object check(){
+        APIResponse res = new APIResponse();
+        List<Notify> getList = notifyRepository.findAll();
+        res.setData(getList);
         return res;
     }
 }

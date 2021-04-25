@@ -18,6 +18,8 @@ public class Notify {
     private int number;
     @Column
     private int price;
+    @Column
+    private int status;
     @Column (name = "customer_id")
     private int customer;
     @Column(name = "user_id")
