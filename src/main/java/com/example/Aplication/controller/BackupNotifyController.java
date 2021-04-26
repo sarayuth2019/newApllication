@@ -50,13 +50,5 @@ public class BackupNotifyController {
         res.setMessage("List User...");
         return res;
     }
-    @PostMapping("/list/customer")
-    public Object listCustomer(int customer){
-        APIResponse res = new APIResponse();
-        List<BackupNotify> getList = backupRepository.findByCustomer(customer);
-        res.setStatus(1);
-        res.setData(getList);
-        res.setMessage("List Customer...");
-        return res;
-    }
+
 }

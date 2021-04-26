@@ -9,6 +9,5 @@ import java.util.List;
 @Transactional
 public interface NotifyRepository extends JpaRepository<Notify,Integer> {
     List<Notify> findByUser(int user);
-    List<Notify>findByCustomer(int customer);
     int deleteByUser(int user);
 }

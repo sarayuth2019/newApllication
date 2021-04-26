@@ -19,9 +19,7 @@ public class BackupNotify {
     @Column
     private int price;
     @Column
-    private int status;
-    @Column (name = "customer_id")
-    private int customer;
+    private String status;
     @Column(name = "user_id")
     private int user;
     @Column(name = "item_id")

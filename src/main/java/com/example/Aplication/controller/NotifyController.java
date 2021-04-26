@@ -35,14 +35,7 @@ public class NotifyController {
         res.setMessage("List User...");
         return res;
     }
-    @PostMapping("/list/customer")
-    public Object list1(int customer){
-        APIResponse res = new APIResponse();
-        List<Notify> getList = notifyRepository.findByCustomer(customer);
-        res.setMessage("List Customer...");
-        res.setData(getList);
-        return res;
-    }
+
     @PostMapping("/delete/user")
     public Object delete(int user){
         APIResponse res = new APIResponse();
