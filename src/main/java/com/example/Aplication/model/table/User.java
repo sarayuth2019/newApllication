@@ -1,5 +1,6 @@
 package com.example.Aplication.model.table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
@@ -36,6 +37,7 @@ public class User {
     @Size(max = 10,min = 10)
     private String phone_number;
     @Column
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date dateRegister = new Date() ;
 
 }

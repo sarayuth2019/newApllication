@@ -1,6 +1,7 @@
 package com.example.Aplication.model.table;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
@@ -34,6 +35,7 @@ public class Order {
     @Column(name = "item_id")
     private int item;
     @Column
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date date = new Date();
 
 }
