@@ -2,7 +2,6 @@ package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.UserRepository;
-import com.example.Aplication.model.table.Items;
 import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/User",method = RequestMethod.GET)
-public class LoginController {
+public class UserController {
     @Autowired
     private UserRepository userRepository;
 

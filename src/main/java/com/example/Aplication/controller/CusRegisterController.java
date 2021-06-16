@@ -2,9 +2,7 @@ package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.CustomerRepository;
-import com.example.Aplication.model.service.UserRepository;
 import com.example.Aplication.model.table.Customer;
-import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,23 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/Register")
-public class RegisterController {
+@RequestMapping(value = "/Register")
+public class CusRegisterController {
     @Autowired
-    private UserRepository userRepository;
-
-    @PostMapping("/user")
-    public Object register(User user) {
+    private CustomerRepository customerRepository;
+    @PostMapping("/customer")
+    public Object registerCus(Customer customer) {
         APIResponse res = new APIResponse();
         try {
-            User dbUser = userRepository.findByEmail(user.getEmail());
+            Customer dbUser = customerRepository.findByEmail(customer.getEmail());
             if (dbUser == null) {
-                userRepository.save(user);
-                System.out.print(user);
+                customerRepository.save(customer);
+                System.out.print(customer);
                 res.setStatus(1);
-                res.setData(user);
+                res.setData(customer);
                 res.setMessage("Success");
             } else {
                 res.setStatus(0);
@@ -43,11 +39,10 @@ public class RegisterController {
         }
         return res;
     }
-
-    @GetMapping("/list/user")
+    @GetMapping("/list/customer")
     public Object list(){
         APIResponse res = new APIResponse();
-        List<User> getOrder = userRepository.findAll();
+        List<Customer> getOrder = customerRepository.findAll();
         res.setData(getOrder);
         res.setStatus(1);
         res.setMessage("List User....");

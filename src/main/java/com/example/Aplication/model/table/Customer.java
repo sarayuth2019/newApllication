@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -14,11 +13,11 @@ import java.util.Date;
 @NotNull
 @ToString
 @Data
-@Entity(name = "user_entity")
-public class User {
+@Entity(name = "customer_entity")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "customer_id")
     private int id;
     @Column
     @Size(max = 16)
@@ -32,7 +31,7 @@ public class User {
     @Column
     @Email
     private  String email;
-    @Column(name = "Image_user")
+    @Column(name = "Image_customer")
     @Lob
     @Basic(fetch = FetchType.EAGER)
     private String Image;
