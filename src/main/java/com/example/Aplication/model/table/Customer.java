@@ -39,6 +39,10 @@ public class Customer {
     @Size(max = 10,min = 10)
     private String phone_number;
     @Column
+    private String name_store;
+    @Column
+    private String description_store;
+    @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date dateRegister = new Date() ;
 
