@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "/Customer")
 public class CustomerController {
@@ -34,6 +36,24 @@ public class CustomerController {
             res.setData(0);
             res.setMessage("Error" + err.toString());
         }
+        return res;
+    }
+    @PostMapping("/update")
+    public Object update(Customer customer){
+        APIResponse response = new APIResponse();
+        customerRepository.save(customer);
+        response.setMessage("Update Customer success...");
+        response.setStatus(1);
+        response.setData(customer);
+        return response;
+    }
+    @PostMapping("/list/id")
+    public Object listId(int id){
+        APIResponse res = new APIResponse();
+        Optional<Customer> listCustomerById = customerRepository.findById(id);
+        res.setStatus(1);
+        res.setData(listCustomerById);
+        res.setMessage("List Customer By id...");
         return res;
     }
 }

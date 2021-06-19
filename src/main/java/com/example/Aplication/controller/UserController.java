@@ -2,6 +2,7 @@ package com.example.Aplication.controller;
 
 import com.example.Aplication.model.bean.APIResponse;
 import com.example.Aplication.model.service.UserRepository;
+import com.example.Aplication.model.table.Customer;
 import com.example.Aplication.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,15 @@ public class UserController {
             res.setMessage("Error" + err.toString());
         }
         return res;
+    }
+    @PostMapping("/update")
+    public Object update(User user){
+        APIResponse response = new APIResponse();
+        userRepository.save(user);
+        response.setMessage("Update User success...");
+        response.setStatus(1);
+        response.setData(user);
+        return response;
     }
     @PostMapping("/list/id")
     public Object listId(int id){
