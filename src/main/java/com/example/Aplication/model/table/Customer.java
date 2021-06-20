@@ -37,11 +37,11 @@ public class Customer {
     private String image;
     @Column
     @Size(max = 10,min = 10)
-    private String phonenumber;
+    private String phone_number;
     @Column
-    private String namestore;
+    private String name_store;
     @Column
-    private String descriptionstore;
+    private String description_store;
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date dateRegister = new Date() ;
