@@ -31,16 +31,16 @@ public class Items {
     @Column(name = "user_id")
     private int user;
     @Column
-    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
     private Date date_begin;
     @Column
-    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
     private Date date_final;
     @Column
-    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
     private Date deal_begin;
     @Column
-    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
     private Date deal_final;
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
