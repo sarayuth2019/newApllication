@@ -24,8 +24,14 @@ public class Items {
     private int price;
     @Column
     private int price_sell;
+    @Column
+    private int count;
+    @Column
+    private int count_request;
     @Column(name = "user_id")
     private int user;
+    @Column(name = "customer_id")
+    private int customer;
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date date_begin;
