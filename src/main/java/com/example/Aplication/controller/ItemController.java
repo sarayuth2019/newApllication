@@ -22,6 +22,15 @@ public class ItemController {
         res.setStatus(0);
         return res;
     }
+    @PostMapping("/update")
+    public Object update(Items items){
+        APIResponse response = new APIResponse();
+        itemRepository.save(items);
+        response.setMessage("update success...");
+        response.setStatus(1);
+        response.setData(items);
+        return response;
+    }
     @PostMapping("/list/item")
     public Object listItem(int id){
         APIResponse res = new APIResponse();

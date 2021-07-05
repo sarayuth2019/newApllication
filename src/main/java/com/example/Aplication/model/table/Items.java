@@ -21,19 +21,23 @@ public class Items {
     @Column(name = "group_items")
     private int group;
     @Column
-    private String description;
-    @Column
     private int price;
     @Column
-    private String location;
+    private int price_sell;
     @Column(name = "user_id")
     private int user;
     @Column
-    private int discount;
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    private Date date_begin;
     @Column
-    private int count_promotion;
-    @Column(name = "status_promotion")
-    private int promotion;
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    private Date date_final;
+    @Column
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    private Date deal_begin;
+    @Column
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
+    private Date deal_final;
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date date = new Date();

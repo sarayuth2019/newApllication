@@ -45,7 +45,7 @@ public class CusRegisterController {
         List<Customer> getOrder = customerRepository.findAll();
         res.setData(getOrder);
         res.setStatus(1);
-        res.setMessage("List User....");
+        res.setMessage("List Customer....");
         return res;
     }
 }

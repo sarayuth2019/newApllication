@@ -22,6 +22,15 @@ public class CartController {
         res.setStatus(1);
         return res;
     }
+    @PostMapping("/update")
+    public Object update(Cart cart){
+        APIResponse response = new APIResponse();
+        cartRepository.save(cart);
+        response.setMessage("update success...");
+        response.setStatus(1);
+        response.setData(cart);
+        return response;
+    }
 
     @GetMapping("/list")
     public Object list(){

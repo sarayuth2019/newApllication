@@ -23,6 +23,8 @@ public class Notify {
     private String status;
     @Column(name = "user_id")
     private int user;
+    @Column(name = "customer_id")
+    private int customer;
     @Column(name = "item_id")
     private int item;
     @Column

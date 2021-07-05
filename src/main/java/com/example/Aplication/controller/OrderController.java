@@ -22,6 +22,15 @@ public class OrderController {
         res.setData(order);
         return res;
     }
+    @PostMapping("/update")
+    public Object update(Order order){
+        APIResponse response = new APIResponse();
+        orderRepository.save(order);
+        response.setStatus(1);
+        response.setMessage("update success...");
+        response.setData(order);
+        return response;
+    }
     @GetMapping("/list")
     public Object list(){
         APIResponse res = new APIResponse();
