@@ -69,6 +69,9 @@ public class CartController {
     @PostMapping("/find/customer")
     public Object findCustomerId(int customer){
         APIResponse res = new APIResponse();
+
+        cartRepository.findById(12);
+
         List<Cart>getCustomer = cartRepository.findByCustomer(customer);
         res.setData(getCustomer);
         res.setStatus(1);

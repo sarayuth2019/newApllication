@@ -31,15 +31,15 @@ public class Customer {
     @Column
     @Email
     private  String email;
-    @Column(name = "Image_customer")
+    @Column(name = "image_customer")
     @Lob
     @Basic(fetch = FetchType.EAGER)
     private String image;
     @Column
     @Size(max = 10,min = 10)
-    private String phone_number;
+    private String phoneNumber;
     @Column
-    private String name_store;
+    private String nameStore;
     @Column
     private String description_store;
     @Column
