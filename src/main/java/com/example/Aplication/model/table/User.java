@@ -19,27 +19,34 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private int id;
+    private int userId;
+
     @Column
     @Size(max = 16)
     private  String password;
+
     @Column
     @Size(max = 16)
     private  String name;
+
     @Column
     @Size(max = 16)
     private  String surname;
+
     @Column
     @Email
     private  String email;
-    @Column(name = "Image_user")
+
+    @Column(name = "image_user")
     @Lob
     @Basic(fetch = FetchType.EAGER)
-    private String Image;
+    private String imageUser;
+
     @Column
     @Size(max = 10,min = 10)
     private String phone_number;
-    @Column
+
+    @Column(name = "date_register")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date dateRegister = new Date() ;
 

@@ -79,7 +79,7 @@ public class OrderController {
     @PostMapping("/find/user/{user}")
     public Object findstatus(Order order,@PathVariable int user){
         APIResponse res = new APIResponse();
-        List<Order> checkstatus = orderRepository.findByStatusAndUser(order.getStatus(),order.getUser());
+        List<Order> checkstatus = orderRepository.findByStatusAndUser(order.getStatus(),order.getUserId());
         res.setMessage("find success...");
         res.setStatus(1);
         res.setData(checkstatus);

@@ -10,38 +10,51 @@ import java.util.Date;
 public class Items {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Items_id")
-    private int id;
-    @Column(name = "Name_items")
-    private String name;
-    @Column(name = "Image_items")
+    @Column(name = "items_id")
+    private int itemId;
+
+    @Column(name = "name_items")
+    private String nameItems;
+
+    @Column(name = "image_items")
     @Lob
     @Basic(fetch = FetchType.EAGER)
-    private String Image;
+    private String imageItems;
+
     @Column(name = "group_items")
-    private int group;
+    private int groupItems;
+
     @Column
     private int price;
-    @Column
-    private int price_sell;
+
+    @Column(name = "price_sell")
+    private int priceSell;
+
     @Column
     private int count;
-    @Column
-    private int count_request;
+
+    @Column(name = "count_request")
+    private int countRequest;
+
     @Column(name = "user_id")
-    private int user;
-    @Column
+    private int userId;
+
+    @Column(name = "date_begin")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
-    private Date date_begin;
-    @Column
+    private Date dateBegin;
+
+    @Column(name = "date_final")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
-    private Date date_final;
-    @Column
+    private Date dateFinal;
+
+    @Column(name = "deal_begin")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
-    private Date deal_begin;
-    @Column
+    private Date dealBegin;
+
+    @Column(name = "deal_final")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
-    private Date deal_final;
+    private Date dealFinal;
+
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date date = new Date();

@@ -15,25 +15,34 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private int id;
+    private int orderId;
+
     @Column
     private int status;
+
     @Column(name = "name_order")
-    private String name;
-    @Column(name = "Image_order")
+    private String nameOrder;
+
+    @Column(name = "image_order")
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private String Image;
+    private String imageOrder;
+
     @Column
     private int number;
+
     @Column
     private int price;
+
     @Column(name = "customer_id")
-    private int customer;
+    private int customerId;
+
     @Column(name = "user_id")
-    private int user;
+    private int userId;
+
     @Column(name = "item_id")
     private int item;
+
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date date = new Date();
