@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 @Transactional
 public interface ItemRepository extends JpaRepository<Items,Integer> {
-    Optional<Items> findById(int id);
-    List<Items> findByName(String name);
-    List<Items>findByUser(int user);
-    List<Items>findByGroup(int group);
+    //Optional<Items> findById(int id);
+    List<Items> findByNameItems(String nameItems);
+    List<Items>findByUserId(int userId);
+    List<Items>findByGroupItems(int groupItems);
 }

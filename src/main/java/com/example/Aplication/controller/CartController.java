@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Cart")
@@ -21,6 +22,15 @@ public class CartController {
         res.setMessage("save success...");
         res.setStatus(1);
         return res;
+    }
+    @PostMapping("/findId")
+    public Object findId(Integer id){
+        APIResponse response = new APIResponse();
+        Optional<Cart> get = cartRepository.findById(id);
+        response.setStatus(1);
+        response.setData(get);
+        response.setMessage("find by id success...");
+        return response;
     }
     @PostMapping("/update")
     public Object update(Cart cart){
@@ -51,7 +61,7 @@ public class CartController {
     @PostMapping("/find/name")
     public Object find(String name){
         APIResponse res = new APIResponse();
-        List<Cart> getList = this.cartRepository.findByName(name);
+        List<Cart> getList = this.cartRepository.findByNameCart(name);
         res.setData(getList);
         res.setMessage("Find By name Cart...");
         res.setStatus(1);
@@ -60,7 +70,7 @@ public class CartController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Cart> getIdUser = cartRepository.findByUser(user);
+        List<Cart> getIdUser = cartRepository.findByUserId(user);
         res.setData(getIdUser);
         res.setMessage("list cart by user_id success....");
         res.setStatus(1);
@@ -69,10 +79,7 @@ public class CartController {
     @PostMapping("/find/customer")
     public Object findCustomerId(int customer){
         APIResponse res = new APIResponse();
-
-        cartRepository.findById(12);
-
-        List<Cart>getCustomer = cartRepository.findByCustomer(customer);
+        List<Cart>getCustomer = cartRepository.findByCustomerId(customer);
         res.setData(getCustomer);
         res.setStatus(1);
         res.setMessage("List customerId....");

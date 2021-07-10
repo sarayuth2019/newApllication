@@ -44,7 +44,7 @@ public class User {
 
     @Column
     @Size(max = 10,min = 10)
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name = "date_register")
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")

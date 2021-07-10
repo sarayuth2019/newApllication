@@ -7,6 +7,6 @@ import java.util.List;
 
 @Transactional
 public interface BackupNotifyRepository extends JpaRepository<BackupNotify,Integer> {
-    List<BackupNotify> findByUser(int user);
-    List<BackupNotify> findByCustomer(int customer);
+    List<BackupNotify> findByUserId(int userId);
+    List<BackupNotify> findByCustomerId(int customerId);
 }

@@ -52,7 +52,7 @@ public class OrderController {
     @PostMapping("/find/name")
     public Object find(String name){
         APIResponse res = new APIResponse();
-        List<Order>getList = this.orderRepository.findByName(name);
+        List<Order>getList = this.orderRepository.findByNameOrder(name);
         res.setData(getList);
         res.setMessage("Find By name Order...");
         res.setStatus(1);
@@ -61,7 +61,7 @@ public class OrderController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Order>getIdUser = orderRepository.findByUser(user);
+        List<Order>getIdUser = orderRepository.findByUserId(user);
         res.setData(getIdUser);
         res.setMessage("List Order By user_id success....");
         res.setStatus(1);
@@ -70,7 +70,7 @@ public class OrderController {
     @PostMapping("/find/customer")
     public Object findCustomerId(int customer){
         APIResponse res = new APIResponse();
-        List<Order>getCustomer = orderRepository.findByCustomer(customer);
+        List<Order>getCustomer = orderRepository.findByCustomerId(customer);
         res.setData(getCustomer);
         res.setStatus(1);
         res.setMessage("List customerId....");
@@ -79,7 +79,7 @@ public class OrderController {
     @PostMapping("/find/user/{user}")
     public Object findstatus(Order order,@PathVariable int user){
         APIResponse res = new APIResponse();
-        List<Order> checkstatus = orderRepository.findByStatusAndUser(order.getStatus(),order.getUserId());
+        List<Order> checkstatus = orderRepository.findByStatusAndUserId(order.getStatus(),order.getUserId());
         res.setMessage("find success...");
         res.setStatus(1);
         res.setData(checkstatus);

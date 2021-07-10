@@ -28,7 +28,7 @@ public class ReviewController {
     @PostMapping("/find/Items")
     public Object findItems(int items){
         APIResponse res = new APIResponse();
-        List<Review>getItemsId = this.reviewRepository.findByItems(items);
+        List<Review>getItemsId = this.reviewRepository.findByItemsId(items);
         res.setStatus(1);
         res.setData(getItemsId);
         res.setMessage("find ItemsId...");

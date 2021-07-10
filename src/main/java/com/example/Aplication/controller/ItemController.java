@@ -34,8 +34,8 @@ public class ItemController {
     @PostMapping("/list/item")
     public Object listItem(int id){
         APIResponse res = new APIResponse();
-        Optional<Items> getItem = itemRepository.findById(id);
-        res.setData(getItem);
+        itemRepository.findById(id);
+        res.setData(id);
         res.setMessage("success");
         res.setStatus(1);
         return res;
@@ -59,7 +59,7 @@ public class ItemController {
     @PostMapping("/find/name")
     public Object find(String name){
         APIResponse res = new APIResponse();
-        List<Items> getList = this.itemRepository.findByName(name);
+        List<Items> getList = this.itemRepository.findByNameItems(name);
         res.setData(getList);
         res.setMessage("Find By name Order...");
         res.setStatus(1);
@@ -68,7 +68,7 @@ public class ItemController {
     @PostMapping("/find/user")
     public Object findUserId(int user){
         APIResponse res = new APIResponse();
-        List<Items> getIdUser = this.itemRepository.findByUser(user);
+        List<Items> getIdUser = this.itemRepository.findByUserId(user);
         res.setData(getIdUser);
         res.setMessage("list order by user_id success....");
         res.setStatus(1);
@@ -77,7 +77,7 @@ public class ItemController {
     @PostMapping("find/group")
     public Object findGroup(int group){
         APIResponse res = new APIResponse();
-        List<Items> getGroup = this.itemRepository.findByGroup(group);
+        List<Items> getGroup = this.itemRepository.findByGroupItems(group);
         res.setMessage("List Group Items....");
         res.setData(getGroup);
         res.setStatus(1);

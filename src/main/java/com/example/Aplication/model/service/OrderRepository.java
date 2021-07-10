@@ -5,13 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 public interface OrderRepository extends JpaRepository<Order,Integer> {
-    Optional<Order> findById(int id);
-    List<Order>findByName(String name);
-    List<Order>findByUser(int user);
-    List<Order>findByCustomer(int customer);
-    List<Order> findByStatusAndUser(int status,int user);
+    List<Order>findByNameOrder(String nameOrder);
+    List<Order>findByUserId(int userId);
+    List<Order>findByCustomerId(int customerId);
+    List<Order> findByStatusAndUserId(int status,int userId);
 }

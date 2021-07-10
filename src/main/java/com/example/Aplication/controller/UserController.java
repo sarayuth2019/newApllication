@@ -50,8 +50,8 @@ public class UserController {
     @PostMapping("/list/id")
     public Object listId(int id){
         APIResponse res = new APIResponse();
-        Optional<User> getId = userRepository.findById(id);
-        res.setData(getId);
+        userRepository.findById(id);
+        res.setData(id);
         res.setMessage("success");
         res.setStatus(1);
         return res;

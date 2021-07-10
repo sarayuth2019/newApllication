@@ -50,9 +50,9 @@ public class CustomerController {
     @PostMapping("/list/id")
     public Object listId(int id){
         APIResponse res = new APIResponse();
-        Optional<Customer> listCustomerById = customerRepository.findById(id);
+        customerRepository.findById(id);
         res.setStatus(1);
-        res.setData(listCustomerById);
+        res.setData(id);
         res.setMessage("List Customer By id...");
         return res;
     }

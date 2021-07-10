@@ -35,7 +35,7 @@ public class BackupNotifyController {
     @PostMapping("/list/user")
     public Object listUser(int user){
         APIResponse res = new APIResponse();
-        List<BackupNotify> getList = backupRepository.findByUser(user);
+        List<BackupNotify> getList = backupRepository.findByUserId(user);
         res.setStatus(1);
         res.setData(getList);
         res.setMessage("List User...");
@@ -44,7 +44,7 @@ public class BackupNotifyController {
     @PostMapping("/list/customer")
     public Object listCustomer(int customer){
         APIResponse response = new APIResponse();
-        List<BackupNotify> getList = backupRepository.findByCustomer(customer);
+        List<BackupNotify> getList = backupRepository.findByCustomerId(customer);
         response.setData(getList);
         response.setStatus(1);
         response.setMessage("List Customer");
