@@ -41,7 +41,7 @@ public class Customer {
     @Column
     private String nameStore;
     @Column
-    private String description_store;
+    private String descriptionStore;
     @Column
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date dateRegister = new Date() ;
