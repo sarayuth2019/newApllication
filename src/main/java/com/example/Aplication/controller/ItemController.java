@@ -34,8 +34,8 @@ public class ItemController {
     @PostMapping("/list/item")
     public Object listItem(int id){
         APIResponse res = new APIResponse();
-        itemRepository.findById(id);
-        res.setData(id);
+        Optional<Items> get = itemRepository.findById(id);
+        res.setData(get);
         res.setMessage("success");
         res.setStatus(1);
         return res;
