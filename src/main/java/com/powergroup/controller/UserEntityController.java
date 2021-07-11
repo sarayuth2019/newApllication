@@ -42,7 +42,6 @@ public class UserEntityController {
     @PostMapping("/update")
     public Object update(UserEntity userEntity) {
         APIResponse response = new APIResponse();
-        userEntity.setPassword(encoderUtil.passwordEncoder().encode(userEntity.getPassword()));
         userEntityRepository.save(userEntity);
         response.setMessage("Update User success...");
         response.setStatus(1);
