@@ -36,6 +36,9 @@ public class Customer {
     @Email
     private String email;
 
+    @Column
+    private String statusCustomer;
+
     @Column(name = "image_customer")
     @Lob
     @Basic(fetch = FetchType.EAGER)

@@ -3,6 +3,7 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.table.Customer;
+import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,10 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private ContextUtil contextUtil;
+
+    @Deprecated
     @PostMapping("/Login")
     public Object login(Customer customer) {
         APIResponse res = new APIResponse();
@@ -49,10 +54,11 @@ public class CustomerController {
         return response;
     }
 
-    @PostMapping("/list/id")
-    public Object listId(int id) {
+    @PostMapping("/list")
+    public Object listId() {
         APIResponse res = new APIResponse();
-        Optional<Customer> get = customerRepository.findById(id);
+        Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
+        Optional<Customer> get = customerRepository.findById(dataCustomer.get().getCustomerId());
         res.setStatus(1);
         res.setData(get);
         res.setMessage("List Customer By id...");

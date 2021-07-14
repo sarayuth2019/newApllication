@@ -1,7 +1,9 @@
 package com.powergroup.util;
 
 
+import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.service.UserEntityRepository;
+import com.powergroup.model.table.Customer;
 import com.powergroup.model.table.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,10 +17,21 @@ public class ContextUtil {
 
     @Autowired
     private UserEntityRepository userEntityRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public Optional<UserEntity> getUserDataFromContext() {
         User contextUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserEntity optUserData = userEntityRepository.findByEmail(contextUser.getUsername());
+        if (optUserData == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(optUserData);
+        }
+    }
+    public Optional<Customer> getCustomerDataFromContext(){
+        User contextUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Customer optUserData = customerRepository.findByEmail(contextUser.getUsername());
         if (optUserData == null) {
             return Optional.empty();
         } else {

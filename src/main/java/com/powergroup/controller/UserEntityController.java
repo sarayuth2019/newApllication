@@ -24,11 +24,13 @@ public class UserEntityController {
     private EncoderUtil encoderUtil;
 
     @Deprecated
+    @PostMapping("/Login")
     public Object login(UserEntity userEntity) {
         APIResponse res = new APIResponse();
         try {
             UserEntity checkUserEntityAndPass = userEntityRepository.findByEmailAndPassword(userEntity.getEmail(), userEntity.getPassword());
             if (checkUserEntityAndPass != null) {
+                encoderUtil.passwordEncoder();
                 res.setStatus(1);
                 res.setMessage("Login success");
                 res.setData(checkUserEntityAndPass);

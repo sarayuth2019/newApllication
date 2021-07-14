@@ -1,6 +1,7 @@
 package com.powergroup.oauth2;
 
 import com.powergroup.model.service.UserDetailServiceImpl;
+import com.powergroup.model.table.Customer;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.EncoderUtil;
 import io.jsonwebtoken.*;
@@ -51,7 +52,14 @@ public class TokenService {
                 .claim("NAME", userEntity.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
-
+    public String createTokenCus(Customer customer) {
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime sixMonthDay = today.plusMonths(monthValidity);
+        Date validity = Date.from(sixMonthDay.atZone(ZoneId.systemDefault()).toInstant());
+        return Jwts.builder().setSubject(customer.getEmail())
+                .claim("NAME", customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
+                .setIssuer("nsc").compact();
+    }
     public String getUserId(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }

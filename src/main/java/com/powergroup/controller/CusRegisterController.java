@@ -3,6 +3,7 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.table.Customer;
+import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,16 @@ public class CusRegisterController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private EncoderUtil encoderUtil;
+
     @PostMapping("/customer")
     public Object registerCus(Customer customer) {
         APIResponse res = new APIResponse();
         try {
             Customer dbUser = customerRepository.findByEmail(customer.getEmail());
             if (dbUser == null) {
+                customer.setPassword(encoderUtil.passwordEncoder().encode(customer.getPassword()));
                 customerRepository.save(customer);
                 System.out.print(customer);
                 res.setStatus(1);

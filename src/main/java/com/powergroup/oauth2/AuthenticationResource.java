@@ -1,5 +1,6 @@
 package com.powergroup.oauth2;
 
+import com.powergroup.model.service.CustomerService;
 import com.powergroup.model.service.LoginBean;
 import com.powergroup.model.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -22,11 +23,23 @@ public class AuthenticationResource {
     private UserService userService;
 
     @Autowired
+    private CustomerService customerService;
+
+    @Autowired
     private TokenService tokenService;
 
-    @PostMapping(path = "/authorize")
-    public ResponseEntity<Object> authenticate(@RequestParam String username, @RequestParam String password) {
-        Optional<Map<String, Object>> optUser = userService.login(new LoginBean(username, password));
+    @PostMapping(path = "/authorizeUser")
+    public ResponseEntity<Object> authenticate(@RequestParam String email, @RequestParam String password) {
+        Optional<Map<String, Object>> optUser = userService.login(new LoginBean(email, password));
+        if (optUser.isPresent()) {
+            return ResponseEntity.ok().body(optUser.get());
+        } else {
+            return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
+        }
+    }
+    @PostMapping(path = "/authorizeCustomer")
+    public ResponseEntity<Object> authenticateCustomer(@RequestParam String email, @RequestParam String password) {
+        Optional<Map<String, Object>> optUser = customerService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {
             return ResponseEntity.ok().body(optUser.get());
         } else {
