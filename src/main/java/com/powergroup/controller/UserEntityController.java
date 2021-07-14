@@ -3,6 +3,7 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.UserEntityRepository;
 import com.powergroup.model.table.UserEntity;
+import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ import java.util.Optional;
 public class UserEntityController {
     @Autowired
     private UserEntityRepository userEntityRepository;
+
+    @Autowired
+    private ContextUtil contextUtil;
 
     @Autowired
     private EncoderUtil encoderUtil;
@@ -49,10 +53,11 @@ public class UserEntityController {
         return response;
     }
 
-    @PostMapping("/list/id")
-    public Object listId(int id) {
+    @PostMapping("/list")
+    public Object listId() {
         APIResponse res = new APIResponse();
-        Optional<UserEntity> get = userEntityRepository.findById(id);
+        Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
+        Optional<UserEntity> get = userEntityRepository.findById(dataUser.get().getUserId());
         res.setData(get);
         res.setMessage("success");
         res.setStatus(1);
