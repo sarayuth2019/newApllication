@@ -40,7 +40,7 @@ public class Items {
     private int countRequest;
 
     @Column(name = "user_id")
-    private int userId;
+    private int customerId;
 
     @Column(name = "date_begin")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
