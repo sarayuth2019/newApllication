@@ -5,7 +5,6 @@ import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.service.ItemRepository;
 import com.powergroup.model.service.UserEntityRepository;
 import com.powergroup.model.table.Customer;
-import com.powergroup.model.table.Items;
 import com.powergroup.model.table.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
