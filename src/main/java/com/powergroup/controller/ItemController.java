@@ -2,7 +2,9 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.ItemRepository;
+import com.powergroup.model.table.Customer;
 import com.powergroup.model.table.Items;
+import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -76,9 +78,10 @@ public class ItemController {
         return res;
     }
 
-    @PostMapping("/find/user")
+    @PostMapping("/find/customer")
     public Object findUserId(int customer) {
         APIResponse res = new APIResponse();
+        //Optional<Customer> data = contextUtil.getCustomerDataFromContext();
         List<Items> getIdUser = this.itemRepository.findByCustomerId(customer);
         res.setData(getIdUser);
         res.setMessage("list order by user_id success....");

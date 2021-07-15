@@ -3,17 +3,22 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.BackupNotifyRepository;
 import com.powergroup.model.table.BackupNotify;
+import com.powergroup.model.table.Customer;
+import com.powergroup.model.table.UserEntity;
+import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("Backup")
 public class BackupNotifyController {
     @Autowired
     private BackupNotifyRepository backupRepository;
-
+    @Autowired
+    private ContextUtil contextUtil;
     @PostMapping("/save")
     public Object save(BackupNotify backupNotify) {
         APIResponse res = new APIResponse();
@@ -36,6 +41,7 @@ public class BackupNotifyController {
     @PostMapping("/list/user")
     public Object listUser(int user) {
         APIResponse res = new APIResponse();
+        //Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
         List<BackupNotify> getList = backupRepository.findByUserId(user);
         res.setStatus(1);
         res.setData(getList);
@@ -46,6 +52,7 @@ public class BackupNotifyController {
     @PostMapping("/list/customer")
     public Object listCustomer(int customer) {
         APIResponse response = new APIResponse();
+        //Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
         List<BackupNotify> getList = backupRepository.findByCustomerId(customer);
         response.setData(getList);
         response.setStatus(1);

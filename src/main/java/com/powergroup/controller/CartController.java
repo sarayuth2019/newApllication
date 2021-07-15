@@ -3,6 +3,9 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.CartRepository;
 import com.powergroup.model.table.Cart;
+import com.powergroup.model.table.Customer;
+import com.powergroup.model.table.UserEntity;
+import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +17,8 @@ import java.util.Optional;
 public class CartController {
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    private ContextUtil contextUtil;
 
     @PostMapping("/save")
     public Object save(Cart cart) {
@@ -76,6 +81,7 @@ public class CartController {
     @PostMapping("/find/user")
     public Object findUserId(int user) {
         APIResponse res = new APIResponse();
+        //Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
         List<Cart> getIdUser = cartRepository.findByUserId(user);
         res.setData(getIdUser);
         res.setMessage("list cart by user_id success....");
@@ -86,6 +92,7 @@ public class CartController {
     @PostMapping("/find/customer")
     public Object findCustomerId(int customer) {
         APIResponse res = new APIResponse();
+        //Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
         List<Cart> getCustomer = cartRepository.findByCustomerId(customer);
         res.setData(getCustomer);
         res.setStatus(1);

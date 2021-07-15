@@ -2,17 +2,23 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.OrderRepository;
+import com.powergroup.model.table.Customer;
 import com.powergroup.model.table.Order;
+import com.powergroup.model.table.UserEntity;
+import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Order")
 public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ContextUtil contextUtil;
 
     @PostMapping("/save")
     public Object save(Order order) {
@@ -65,9 +71,10 @@ public class OrderController {
     }
 
     @PostMapping("/find/user")
-    public Object findUserId(int user) {
+    public Object findUserId(@PathVariable int user) {
         APIResponse res = new APIResponse();
-        List<Order> getIdUser = orderRepository.findByUserId(user);
+        Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
+        List<Order> getIdUser = orderRepository.findByUserId(dataUser.get().getUserId());
         res.setData(getIdUser);
         res.setMessage("List Order By user_id success....");
         res.setStatus(1);
@@ -77,6 +84,7 @@ public class OrderController {
     @PostMapping("/find/customer")
     public Object findCustomerId(int customer) {
         APIResponse res = new APIResponse();
+       // Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
         List<Order> getCustomer = orderRepository.findByCustomerId(customer);
         res.setData(getCustomer);
         res.setStatus(1);
