@@ -4,6 +4,7 @@ import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.table.Customer;
 import com.powergroup.util.ContextUtil;
+import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private EncoderUtil encoderUtil;
 
     @Autowired
     private ContextUtil contextUtil;
@@ -47,6 +51,7 @@ public class CustomerController {
     @PostMapping("/update")
     public Object update(Customer customer) {
         APIResponse response = new APIResponse();
+        encoderUtil.passwordEncoder();
         customerRepository.save(customer);
         response.setMessage("Update Customer success...");
         response.setStatus(1);

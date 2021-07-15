@@ -3,6 +3,7 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.ItemRepository;
 import com.powergroup.model.table.Items;
+import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private ContextUtil contextUtil;
 
     @PostMapping("/save")
     public Object save(Items item) {

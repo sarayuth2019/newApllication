@@ -2,8 +2,10 @@ package com.powergroup.util;
 
 
 import com.powergroup.model.service.CustomerRepository;
+import com.powergroup.model.service.ItemRepository;
 import com.powergroup.model.service.UserEntityRepository;
 import com.powergroup.model.table.Customer;
+import com.powergroup.model.table.Items;
 import com.powergroup.model.table.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ public class ContextUtil {
     private UserEntityRepository userEntityRepository;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private ItemRepository itemRepository;
 
     public Optional<UserEntity> getUserDataFromContext() {
         User contextUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -38,5 +42,4 @@ public class ContextUtil {
             return Optional.of(optUserData);
         }
     }
-
 }
