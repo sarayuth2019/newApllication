@@ -4,10 +4,14 @@ import com.powergroup.model.service.UserDetailServiceImpl;
 import com.powergroup.model.table.Market;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.EncoderUtil;
+import com.powergroup.util.TokenUtil;
 import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -34,7 +38,10 @@ public class TokenService {
     private EncoderUtil encoderUtil;
 
     @Autowired
-    private UserDetailsService customUserDetailsService;
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private TokenUtil tokenUtil;
 
     @PostConstruct
     protected void init() {
@@ -58,14 +65,11 @@ public class TokenService {
                 .setIssuer("nsc").compact();
     }
 
-//    public String getUserId(String token) {
-//        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-//    }
-//
-//    public Authentication getAuthentication(String token) {
-//        UserDetails userDetails = customUserDetailsService.loadUserByUsername(getUserId(token));
-//        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-//    }
+    public Authentication getAuthentication(String token) {
+        String plainText = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+        UserDetails userDetails = userDetailsService.loadUserByUsername(plainText);
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
 
     public boolean validateToken(String token) {
         try {
