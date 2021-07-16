@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserEntityRepository userEntityRepository;
+    private UserRepository userEntityRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;

@@ -89,14 +89,14 @@ public class CartController {
         return res;
     }
 
-    @PostMapping("/find/customer")
-    public Object findCustomerId(int customer) {
+    @PostMapping("/find/market")
+    public Object findMarketId(int market) {
         APIResponse res = new APIResponse();
         //Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
-        List<Cart> getCustomer = cartRepository.findByCustomerId(customer);
+        List<Cart> getCustomer = cartRepository.findByMarketId(market);
         res.setData(getCustomer);
         res.setStatus(1);
-        res.setMessage("List customerId....");
+        res.setMessage("List marketId....");
         return res;
     }
 

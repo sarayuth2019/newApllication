@@ -78,13 +78,13 @@ public class ItemController {
         return res;
     }
 
-    @PostMapping("/find/customer")
-    public Object findUserId(int customer) {
+    @PostMapping("/find/market")
+    public Object findMarketId(int market) {
         APIResponse res = new APIResponse();
         //Optional<Customer> data = contextUtil.getCustomerDataFromContext();
-        List<Items> getIdUser = this.itemRepository.findByCustomerId(customer);
+        List<Items> getIdUser = this.itemRepository.findByMarketId(market);
         res.setData(getIdUser);
-        res.setMessage("list order by user_id success....");
+        res.setMessage("list order by marketId success....");
         res.setStatus(1);
         return res;
     }

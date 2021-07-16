@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.transaction.Transactional;
 
 @Transactional
-public interface UserEntityRepository extends JpaRepository<UserEntity, Integer> {
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByEmail(String email);
 

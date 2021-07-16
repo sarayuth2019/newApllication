@@ -3,8 +3,8 @@ package com.powergroup.util;
 
 import com.powergroup.model.service.CustomerRepository;
 import com.powergroup.model.service.ItemRepository;
-import com.powergroup.model.service.UserEntityRepository;
-import com.powergroup.model.table.Customer;
+import com.powergroup.model.service.UserRepository;
+import com.powergroup.model.table.Market;
 import com.powergroup.model.table.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,9 +32,9 @@ public class ContextUtil {
             return Optional.of(optUserData);
         }
     }
-    public Optional<Customer> getCustomerDataFromContext(){
+    public Optional<Market> getCustomerDataFromContext(){
         User contextUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Customer optUserData = customerRepository.findByEmail(contextUser.getUsername());
+        Market optUserData = customerRepository.findByEmail(contextUser.getUsername());
         if (optUserData == null) {
             return Optional.empty();
         } else {

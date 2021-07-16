@@ -49,14 +49,14 @@ public class BackupNotifyController {
         return res;
     }
 
-    @PostMapping("/list/customer")
-    public Object listCustomer(int customer) {
+    @PostMapping("/list/market")
+    public Object listCustomer(int market) {
         APIResponse response = new APIResponse();
         //Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
-        List<BackupNotify> getList = backupRepository.findByCustomerId(customer);
+        List<BackupNotify> getList = backupRepository.findByMarketId(market);
         response.setData(getList);
         response.setStatus(1);
-        response.setMessage("List Customer");
+        response.setMessage("List marketId...");
         return response;
     }
 

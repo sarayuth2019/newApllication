@@ -31,8 +31,8 @@ public class BackupNotify {
     @Column(name = "user_id")
     private int userId;
 
-    @Column(name = "customer_id")
-    private int customerId;
+    @Column(name = "market_id")
+    private int marketId;
 
     @Column(name = "item_id")
     private int itemId;

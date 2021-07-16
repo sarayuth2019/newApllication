@@ -14,21 +14,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/Register")
-public class CusRegisterController {
+public class MarketRegisterController {
     @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;
-
-    @PostMapping("/customer")
-    public Object registerCus(Customer customer) {
+    
+    @PostMapping("/market")
+    public Object registerCus(Market customer) {
         APIResponse res = new APIResponse();
         try {
             Customer dbUser = customerRepository.findByEmail(customer.getEmail());
             if (dbUser == null) {
                 customer.setPassword(encoderUtil.passwordEncoder().encode(customer.getPassword()));
-                customerRepository.save(customer);
+                marketRepository.save(customer);
                 System.out.print(customer);
                 res.setStatus(1);
                 res.setData(customer);
@@ -46,13 +46,13 @@ public class CusRegisterController {
         return res;
     }
 
-    @GetMapping("/list/customer")
+    @GetMapping("/list/market")
     public Object list() {
         APIResponse res = new APIResponse();
         List<Customer> getOrder = customerRepository.findAll();
         res.setData(getOrder);
         res.setStatus(1);
-        res.setMessage("List Customer....");
+        res.setMessage("List market....");
         return res;
     }
 }

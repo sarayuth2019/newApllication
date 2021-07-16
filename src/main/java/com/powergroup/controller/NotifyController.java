@@ -51,24 +51,24 @@ public class NotifyController {
         return res;
     }
 
-    @PostMapping("/list/customer")
-    public Object listCustomer(int customer) {
+    @PostMapping("/list/market")
+    public Object listMarketId(int market) {
         APIResponse response = new APIResponse();
        // Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
-        List<Notify> list = notifyRepository.findByCustomerId(customer);
+        List<Notify> list = notifyRepository.findByMarketId(market);
         response.setData(list);
-        response.setMessage("List customer...");
+        response.setMessage("List marketId...");
         response.setStatus(1);
         return response;
     }
 
-    @PostMapping("/delete/customer")
-    private Object deleteCustomer(int customer) {
+    @PostMapping("/delete/market")
+    private Object deleteMarketId(int market) {
         APIResponse response = new APIResponse();
-        notifyRepository.deleteByCustomerId(customer);
-        response.setData(customer);
+        notifyRepository.deleteByMarketId(market);
+        response.setData(market);
         response.setStatus(1);
-        response.setMessage("delete customer success...");
+        response.setMessage("delete marketId success...");
         return response;
     }
 

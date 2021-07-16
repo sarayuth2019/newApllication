@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/Customer")
-public class CustomerController {
+@RequestMapping(value = "/Market")
+public class MarketController {
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -52,8 +52,8 @@ public class CustomerController {
     public Object update(Customer customer) {
         APIResponse response = new APIResponse();
         encoderUtil.passwordEncoder();
-        customerRepository.save(customer);
-        response.setMessage("Update Customer success...");
+        marketRepository.save(customer);
+        response.setMessage("Update market success...");
         response.setStatus(1);
         response.setData(customer);
         return response;
@@ -66,7 +66,7 @@ public class CustomerController {
         Optional<Customer> get = customerRepository.findById(dataCustomer.get().getCustomerId());
         res.setStatus(1);
         res.setData(get);
-        res.setMessage("List Customer By id...");
+        res.setMessage("List marketId By id...");
         return res;
     }
 }

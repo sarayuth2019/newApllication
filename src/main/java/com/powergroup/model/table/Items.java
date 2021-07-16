@@ -39,8 +39,8 @@ public class Items {
     @Column(name = "count_request")
     private int countRequest;
 
-    @Column(name = "user_id")
-    private int customerId;
+    @Column(name = "market_id")
+    private int marketId;
 
     @Column(name = "date_begin")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")

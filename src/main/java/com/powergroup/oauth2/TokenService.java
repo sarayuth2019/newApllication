@@ -8,9 +8,6 @@ import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -60,14 +57,15 @@ public class TokenService {
                 .claim("NAME", customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
-    public String getUserId(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-    }
 
-    public Authentication getAuthentication(String token) {
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(getUserId(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-    }
+//    public String getUserId(String token) {
+//        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+//    }
+//
+//    public Authentication getAuthentication(String token) {
+//        UserDetails userDetails = customUserDetailsService.loadUserByUsername(getUserId(token));
+//        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+//    }
 
     public boolean validateToken(String token) {
         try {

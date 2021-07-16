@@ -11,7 +11,6 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Items, Integer> {
     //Optional<Items> findById(int id);
     List<Items> findByNameItems(String nameItems);
-    List<Items> findByCustomerId(int customerId);
-
+    List<Items> findByMarketId(int marketId);
     List<Items> findByGroupItems(int groupItems);
 }

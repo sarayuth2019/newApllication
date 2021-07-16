@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class CustomerService {
+public class MarketService {
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -29,8 +29,8 @@ public class CustomerService {
             String userPassWord = customer.getPassword();
             if (encoderUtil.passwordEncoder().matches(loginBean.getPassword(), userPassWord)) {
                 ret.put("data", 1);
-                ret.put("token", tokenService.createTokenCus(customer));
-                ret.put("customerId", customer.getCustomerId());
+                ret.put("token", tokenService.createTokenMarket(customer));
+                ret.put("marketId", customer.getMarketId());
                 return Optional.of(ret);
             } else {
                 ret.put("data", 0);

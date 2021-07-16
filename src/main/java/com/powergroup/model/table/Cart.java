@@ -33,8 +33,8 @@ public class Cart {
     @Column
     private int price;
 
-    @Column(name = "customer_id")
-    private int customerId;
+    @Column(name = "market_id")
+    private int marketId;
 
     @Column(name = "user_id")
     private int userId;

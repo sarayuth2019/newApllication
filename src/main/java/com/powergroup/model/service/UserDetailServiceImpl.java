@@ -16,7 +16,11 @@ import java.util.List;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserEntityRepository userEntityRepository;
+    private UserRepository userShopRepository;
+
+    @Autowired
+    private MarketRepository userMarketRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

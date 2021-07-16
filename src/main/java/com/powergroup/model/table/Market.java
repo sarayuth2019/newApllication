@@ -17,8 +17,8 @@ import java.util.Date;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "customer_id")
-    private int customerId;
+    @Column(name = "market_id")
+    private int marketId;
 
     @Column
     @Size(max = 16)
@@ -37,22 +37,22 @@ public class Customer {
     private String email;
 
     @Column
-    private String statusCustomer;
+    private String statusMarket;
 
-    @Column(name = "image_customer")
+    @Column(name = "image_market")
     @Lob
     @Basic(fetch = FetchType.EAGER)
-    private String imageCustomer;
+    private String imageMarket;
 
     @Column(name = "phone_number")
     @Size(max = 10, min = 10)
     private String phoneNumber;
 
     @Column
-    private String nameStore;
+    private String nameMarket;
 
     @Column
-    private String descriptionStore;
+    private String descriptionMarket;
 
     @Column(name = "date_register")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
