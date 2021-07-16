@@ -28,7 +28,7 @@ public class AuthenticationResource {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping(path = "/authorizeUser")
+    @PostMapping(path = "/authorizeShop")
     public ResponseEntity<Object> authenticate(@RequestParam String email, @RequestParam String password) {
         Optional<Map<String, Object>> optUser = userService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {
@@ -37,7 +37,7 @@ public class AuthenticationResource {
             return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
         }
     }
-    @PostMapping(path = "/authorizeCustomer")
+    @PostMapping(path = "/authorizeMarket")
     public ResponseEntity<Object> authenticateCustomer(@RequestParam String email, @RequestParam String password) {
         Optional<Map<String, Object>> optUser = marketService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {

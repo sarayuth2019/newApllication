@@ -1,7 +1,7 @@
 package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
-import com.powergroup.model.service.UserEntityRepository;
+import com.powergroup.model.service.UserRepository;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/Register")
 public class RegisterController {
     @Autowired
-    private UserEntityRepository userEntityRepository;
+    private UserRepository userEntityRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;

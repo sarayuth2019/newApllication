@@ -13,8 +13,8 @@ import java.util.Date;
 @NotNull
 @ToString
 @Data
-@Entity(name = "customer_entity")
-public class Customer {
+@Entity(name = "market_entity")
+public class Market {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "market_id")

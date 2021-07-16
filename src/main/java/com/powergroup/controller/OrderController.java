@@ -2,7 +2,6 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.OrderRepository;
-import com.powergroup.model.table.Customer;
 import com.powergroup.model.table.Order;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;

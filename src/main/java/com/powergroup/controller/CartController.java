@@ -3,8 +3,6 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.CartRepository;
 import com.powergroup.model.table.Cart;
-import com.powergroup.model.table.Customer;
-import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

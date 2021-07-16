@@ -1,8 +1,8 @@
 package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
-import com.powergroup.model.service.CustomerRepository;
-import com.powergroup.model.table.Customer;
+import com.powergroup.model.service.MarketRepository;
+import com.powergroup.model.table.Market;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequestMapping(value = "/Market")
 public class MarketController {
     @Autowired
-    private CustomerRepository customerRepository;
+    private MarketRepository marketRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;
@@ -26,10 +26,10 @@ public class MarketController {
 
     @Deprecated
     @PostMapping("/Login")
-    public Object login(Customer customer) {
+    public Object login(Market customer) {
         APIResponse res = new APIResponse();
         try {
-            Customer checkUserAndPass = customerRepository.findByEmailAndPassword(customer.getEmail(), customer.getPassword());
+            Market checkUserAndPass = marketRepository.findByEmailAndPassword(customer.getEmail(), customer.getPassword());
             if (checkUserAndPass != null) {
                 res.setStatus(1);
                 res.setMessage("Login success");
@@ -49,7 +49,7 @@ public class MarketController {
     }
 
     @PostMapping("/update")
-    public Object update(Customer customer) {
+    public Object update(Market customer) {
         APIResponse response = new APIResponse();
         encoderUtil.passwordEncoder();
         marketRepository.save(customer);
@@ -62,8 +62,8 @@ public class MarketController {
     @PostMapping("/list")
     public Object listId() {
         APIResponse res = new APIResponse();
-        Optional<Customer> dataCustomer = contextUtil.getCustomerDataFromContext();
-        Optional<Customer> get = customerRepository.findById(dataCustomer.get().getCustomerId());
+        Optional<Market> dataCustomer = contextUtil.getCustomerDataFromContext();
+        Optional<Market> get = marketRepository.findById(dataCustomer.get().getMarketId());
         res.setStatus(1);
         res.setData(get);
         res.setMessage("List marketId By id...");

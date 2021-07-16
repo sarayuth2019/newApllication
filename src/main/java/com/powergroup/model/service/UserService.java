@@ -30,7 +30,7 @@ public class UserService {
             String userPassWord = userEntity.getPassword();
             if (encoderUtil.passwordEncoder().matches(loginBean.getPassword(), userPassWord)) {
                 ret.put("data", 1);
-                ret.put("token", tokenService.createToken(userEntity));
+                ret.put("token", tokenService.createShop(userEntity));
                 ret.put("userId", userEntity.getUserId());
                 return Optional.of(ret);
             } else {

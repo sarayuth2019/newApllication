@@ -1,5 +1,6 @@
 package com.powergroup.model.service;
 
+import com.powergroup.model.table.Market;
 import com.powergroup.model.table.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,11 +25,24 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserEntity userManager = userEntityRepository.findByEmail(s);
-        if (userManager == null) {
-            throw new UsernameNotFoundException(s);
+        String flagUser = s.substring(0, 1);
+        String email = s.substring(1, s.length());
+        UserEntity userManager = null;
+        if("1".equals(flagUser)){
+            //user
+            UserEntity userShop = userShopRepository.findByEmail(email);
+            if (userShop == null) {
+                throw new UsernameNotFoundException(s);
+            }
+            return new User(userManager.getEmail(), "", getAuthority());
+        } else {
+            //market
+            Market userMarket = userMarketRepository.findByEmail(email);
+            if (userMarket == null) {
+                throw new UsernameNotFoundException(s);
+            }
+            return new User(userMarket.getEmail(), "", getAuthority());
         }
-        return new User(userManager.getEmail(), "", getAuthority());
     }
     private List<SimpleGrantedAuthority> getAuthority() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));

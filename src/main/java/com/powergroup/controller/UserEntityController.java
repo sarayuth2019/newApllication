@@ -1,7 +1,7 @@
 package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
-import com.powergroup.model.service.UserEntityRepository;
+import com.powergroup.model.service.UserRepository;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping(value = "/User", method = RequestMethod.GET)
 public class UserEntityController {
     @Autowired
-    private UserEntityRepository userEntityRepository;
+    private UserRepository userEntityRepository;
 
     @Autowired
     private ContextUtil contextUtil;

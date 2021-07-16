@@ -1,8 +1,8 @@
 package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
-import com.powergroup.model.service.CustomerRepository;
-import com.powergroup.model.table.Customer;
+import com.powergroup.model.service.MarketRepository;
+import com.powergroup.model.table.Market;
 import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/Register")
 public class MarketRegisterController {
     @Autowired
-    private CustomerRepository customerRepository;
+    private MarketRepository marketRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;
@@ -25,7 +25,7 @@ public class MarketRegisterController {
     public Object registerCus(Market customer) {
         APIResponse res = new APIResponse();
         try {
-            Customer dbUser = customerRepository.findByEmail(customer.getEmail());
+            Market dbUser = marketRepository.findByEmail(customer.getEmail());
             if (dbUser == null) {
                 customer.setPassword(encoderUtil.passwordEncoder().encode(customer.getPassword()));
                 marketRepository.save(customer);
@@ -49,7 +49,7 @@ public class MarketRegisterController {
     @GetMapping("/list/market")
     public Object list() {
         APIResponse res = new APIResponse();
-        List<Customer> getOrder = customerRepository.findAll();
+        List<Market> getOrder = marketRepository.findAll();
         res.setData(getOrder);
         res.setStatus(1);
         res.setMessage("List market....");

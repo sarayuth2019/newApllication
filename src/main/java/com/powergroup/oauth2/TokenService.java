@@ -1,7 +1,7 @@
 package com.powergroup.oauth2;
 
 import com.powergroup.model.service.UserDetailServiceImpl;
-import com.powergroup.model.table.Customer;
+import com.powergroup.model.table.Market;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.EncoderUtil;
 import io.jsonwebtoken.*;
@@ -41,20 +41,20 @@ public class TokenService {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(UserEntity userEntity) {
+    public String createShop(UserEntity userEntity) {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime sixMonthDay = today.plusMonths(monthValidity);
         Date validity = Date.from(sixMonthDay.atZone(ZoneId.systemDefault()).toInstant());
         return Jwts.builder().setSubject(userEntity.getEmail())
-                .claim("NAME", userEntity.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
+                .claim("NAME", "0"+userEntity.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
-    public String createTokenCus(Customer customer) {
+    public String createTokenMarket(Market customer) {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime sixMonthDay = today.plusMonths(monthValidity);
         Date validity = Date.from(sixMonthDay.atZone(ZoneId.systemDefault()).toInstant());
         return Jwts.builder().setSubject(customer.getEmail())
-                .claim("NAME", customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
+                .claim("NAME", "1"+customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
 

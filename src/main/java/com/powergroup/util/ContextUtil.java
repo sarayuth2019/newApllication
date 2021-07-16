@@ -1,7 +1,7 @@
 package com.powergroup.util;
 
 
-import com.powergroup.model.service.CustomerRepository;
+import com.powergroup.model.service.MarketRepository;
 import com.powergroup.model.service.ItemRepository;
 import com.powergroup.model.service.UserRepository;
 import com.powergroup.model.table.Market;
@@ -17,9 +17,9 @@ import java.util.Optional;
 public class ContextUtil {
 
     @Autowired
-    private UserEntityRepository userEntityRepository;
+    private UserRepository userEntityRepository;
     @Autowired
-    private CustomerRepository customerRepository;
+    private MarketRepository customerRepository;
     @Autowired
     private ItemRepository itemRepository;
 

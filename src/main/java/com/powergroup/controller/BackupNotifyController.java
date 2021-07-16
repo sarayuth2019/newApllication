@@ -3,14 +3,11 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.BackupNotifyRepository;
 import com.powergroup.model.table.BackupNotify;
-import com.powergroup.model.table.Customer;
-import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("Backup")
