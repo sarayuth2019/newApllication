@@ -52,16 +52,17 @@ public class TokenService {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime sixMonthDay = today.plusMonths(monthValidity);
         Date validity = Date.from(sixMonthDay.atZone(ZoneId.systemDefault()).toInstant());
-        return Jwts.builder().setSubject(userEntity.getEmail())
-                .claim("NAME", "0"+userEntity.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
+        return Jwts.builder().setSubject("1" + userEntity.getEmail())
+                .claim("NAME", "1" + userEntity.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
+
     public String createTokenMarket(Market customer) {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime sixMonthDay = today.plusMonths(monthValidity);
         Date validity = Date.from(sixMonthDay.atZone(ZoneId.systemDefault()).toInstant());
-        return Jwts.builder().setSubject(customer.getEmail())
-                .claim("NAME", "1"+customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
+        return Jwts.builder().setSubject("2" + customer.getEmail())
+                .claim("NAME", "2" + customer.getEmail()).signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity)
                 .setIssuer("nsc").compact();
     }
 

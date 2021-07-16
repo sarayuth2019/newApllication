@@ -31,14 +31,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
         String[] tokenData = tokenUtil.covert(s);
         String flagUser = tokenData[0];
         String email = tokenData[1];
-        UserEntity userManager = null;
         if ("1".equals(flagUser)) {
             //user
             UserEntity userShop = userShopRepository.findByEmail(email);
             if (userShop == null) {
                 throw new UsernameNotFoundException(s);
             }
-            return new User(userManager.getEmail(), "", getAuthority());
+            return new User(userShop.getEmail(), "", getAuthority());
         } else {
             //market
             Market userMarket = userMarketRepository.findByEmail(email);
