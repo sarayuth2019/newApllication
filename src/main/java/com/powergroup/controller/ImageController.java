@@ -46,7 +46,7 @@ public class ImageController {
     private Object listImage(@PathVariable int itemId){
         APIResponse res = new APIResponse();
 //        Optional<Market> dataCustomer = contextUtil.getMarketDataFromContext();
-        Optional<Image> data = Optional.ofNullable(imageRepository.findByItemId(itemId);
+        Optional<Image> data = Optional.ofNullable(imageRepository.findByItemId(itemId));
         String nameImage = data.get().getImage();
         String part = "D:\\picturekakkak"+"/"+nameImage;
         File file = new File(part);
