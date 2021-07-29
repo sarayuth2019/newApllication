@@ -34,7 +34,7 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        image.setImage(nameImage);
+        image.setImageName(nameImage);
         imageRepository.save(image);
         res.setData(image);
         res.setMessage("success...");
@@ -45,9 +45,8 @@ public class ImageController {
     @GetMapping("/{itemId}")
     private Object listImage(@PathVariable int itemId){
         APIResponse res = new APIResponse();
-//        Optional<Market> dataCustomer = contextUtil.getMarketDataFromContext();
-        Optional<Image> data = Optional.ofNullable(imageRepository.findByItemId(itemId));
-        String nameImage = data.get().getImage();
+        Optional<Image> data =  imageRepository.findByItemId(itemId);
+        String nameImage = data.get().getImageName();
         String part = "D:\\picturekakkak"+"/"+nameImage;
         File file = new File(part);
         byte[] process = file.getName().getBytes();

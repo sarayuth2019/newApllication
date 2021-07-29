@@ -13,33 +13,11 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column
-    private String image;
+    private String imageName;
     @Column
     private int marketId;
     @Column
-    private int ItemId;
+    private int itemId;
 
-    public int getMarketId() {
-        return marketId;
-    }
 
-    public void setItemId(int itemId) {
-        ItemId = itemId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
-    }
 }
