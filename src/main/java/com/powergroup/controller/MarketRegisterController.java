@@ -22,16 +22,16 @@ public class MarketRegisterController {
     private EncoderUtil encoderUtil;
     
     @PostMapping("/market")
-    public Object registerCus(Market customer) {
+    public Object registerMarket(Market market) {
         APIResponse res = new APIResponse();
         try {
-            Market dbUser = marketRepository.findByEmail(customer.getEmail());
+            Market dbUser = marketRepository.findByEmail( market.getEmail());
             if (dbUser == null) {
-                customer.setPassword(encoderUtil.passwordEncoder().encode(customer.getPassword()));
-                marketRepository.save(customer);
-                System.out.print(customer);
+                market.setPassword(encoderUtil.passwordEncoder().encode(market.getPassword()));
+                marketRepository.save(market);
+                System.out.print(market);
                 res.setStatus(1);
-                res.setData(customer);
+                res.setData(market);
                 res.setMessage("Success");
             } else {
                 res.setStatus(0);

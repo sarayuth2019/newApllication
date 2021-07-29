@@ -32,7 +32,7 @@ public class ContextUtil {
             return Optional.of(optUserData);
         }
     }
-    public Optional<Market> getCustomerDataFromContext(){
+    public Optional<Market> getMarketDataFromContext(){
         User contextUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Market optUserData = customerRepository.findByEmail(contextUser.getUsername());
         if (optUserData == null) {

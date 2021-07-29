@@ -29,7 +29,7 @@ public class AuthenticationResource {
     private TokenService tokenService;
 
     @PostMapping(path = "/authorizeShop")
-    public ResponseEntity<Object> authenticate(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> authenticateShop(@RequestParam String email, @RequestParam String password) {
         Optional<Map<String, Object>> optUser = userService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {
             return ResponseEntity.ok().body(optUser.get());
@@ -38,7 +38,7 @@ public class AuthenticationResource {
         }
     }
     @PostMapping(path = "/authorizeMarket")
-    public ResponseEntity<Object> authenticateCustomer(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> authenticateMarket(@RequestParam String email, @RequestParam String password) {
         Optional<Map<String, Object>> optUser = marketService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {
             return ResponseEntity.ok().body(optUser.get());

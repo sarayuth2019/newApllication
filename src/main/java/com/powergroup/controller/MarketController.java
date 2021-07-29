@@ -62,7 +62,7 @@ public class MarketController {
     @PostMapping("/list")
     public Object listId() {
         APIResponse res = new APIResponse();
-        Optional<Market> dataCustomer = contextUtil.getCustomerDataFromContext();
+        Optional<Market> dataCustomer = contextUtil.getMarketDataFromContext();
         Optional<Market> get = marketRepository.findById(dataCustomer.get().getMarketId());
         res.setStatus(1);
         res.setData(get);
