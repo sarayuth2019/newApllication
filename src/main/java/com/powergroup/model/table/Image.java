@@ -13,6 +13,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column
+    @Basic(fetch = FetchType.LAZY)
     private String imageName;
     @Column
     private int marketId;

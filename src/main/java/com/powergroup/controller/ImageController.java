@@ -1,16 +1,14 @@
 package com.powergroup.controller;
-
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.ImageRepository;
 import com.powergroup.model.table.Image;
-import com.powergroup.model.table.Market;
 import com.powergroup.util.ContextUtil;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Optional;
 import java.util.Random;
 
@@ -43,16 +41,22 @@ public class ImageController {
     }
 
     @GetMapping("/{itemId}")
-    private Object listImage(@PathVariable int itemId){
+    private Object listImage(@PathVariable int itemId) throws IOException {
         APIResponse res = new APIResponse();
         Optional<Image> data =  imageRepository.findByItemId(itemId);
         String nameImage = data.get().getImageName();
         String part = "D:\\picturekakkak"+"/"+nameImage;
-        File file = new File(part);
-        byte[] process = file.getName().getBytes();
-        res.setData(process);
-        res.setStatus(1);
-        res.setMessage("success...");
+        try {
+            InputStream _image = new FileInputStream(part);
+            byte[] process = IOUtils.toByteArray(_image);
+            res.setData(process);
+            res.setStatus(1);
+            res.setMessage("success...");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            res.setStatus(0);
+            res.setMessage("error");
+        }
         return res;
     }
 }

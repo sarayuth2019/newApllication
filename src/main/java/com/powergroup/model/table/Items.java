@@ -19,10 +19,6 @@ public class Items {
     @Column(name = "name_items")
     private String nameItems;
 
-    @Column(name = "image_items")
-    @Lob
-    @Basic(fetch = FetchType.EAGER)
-    private String imageItems;
 
     @Column(name = "group_items")
     private int groupItems;
