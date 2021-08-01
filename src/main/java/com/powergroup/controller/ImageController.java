@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @RequestMapping("/images")
@@ -38,6 +41,26 @@ public class ImageController {
         res.setData(1);
         return res;
     }
+    @PostMapping("/deleteItemId")
+    public Object delete(int itemId) throws IOException {
+        APIResponse res = new APIResponse();
+        String parseImage = "";
+        List<Image> data = imageRepository.findByItemId(itemId);
+        for (int i = 0; i < data.size(); i++) {
+            String nameImage = data.get(i).getImageName();
+            parseImage = "D:\\picturekakkak" + "/" + nameImage;
+//            Files.createFile(Paths.get(parseImage));
+            Path fileToDeletePath = Paths.get(parseImage);
+            Files.delete(fileToDeletePath);
+            System.out.println("delete images in store"+fileToDeletePath+"\n");
+        }
+        imageRepository.deleteByItemId(itemId);
+        res.setData("delete By userId = "+ itemId);
+        res.setMessage("delete success...");
+        res.setStatus(1);
+        return res;
+    }
+
     @GetMapping("/{itemId}")
     public Object listImg(@PathVariable int itemId){
         APIResponse res = new APIResponse();
@@ -67,23 +90,4 @@ public class ImageController {
         return res;
     }
 
-//    @GetMapping("find/{itemId}")
-//    public Object listImage(@PathVariable int itemId) throws IOException {
-//        APIResponse res = new APIResponse();
-//        Optional<Image> data = Optional.ofNullable(imageRepository.findByItemId(itemId));
-//        String nameImage = data.get().getImageName();
-//        String part = "D:\\picturekakkak"+"/"+nameImage;
-//        try {
-//            InputStream _image = new FileInputStream(part);
-//            byte[] process = IOUtils.toByteArray(_image);
-//            res.setData(process);
-//            res.setStatus(1);
-//            res.setMessage("success...");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            res.setStatus(0);
-//            res.setMessage("error");
-//        }
-//        return res;
-//    }
 }

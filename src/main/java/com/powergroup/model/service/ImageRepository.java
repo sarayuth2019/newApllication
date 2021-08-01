@@ -9,4 +9,5 @@ import java.util.List;
 public interface ImageRepository extends JpaRepository<Image,Integer> {
 //    Image findByMarketId(int marketId);
     List<Image> findByItemId(int itemId);
+    int deleteByItemId(int itemId);
 }
