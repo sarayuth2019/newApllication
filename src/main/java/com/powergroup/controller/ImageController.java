@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @RequestMapping("/images")
 @RestController
@@ -39,24 +38,52 @@ public class ImageController {
         res.setData(1);
         return res;
     }
-
     @GetMapping("/{itemId}")
-    private Object listImage(@PathVariable int itemId) throws IOException {
+    public Object listImg(@PathVariable int itemId){
         APIResponse res = new APIResponse();
-        Optional<Image> data =  imageRepository.findByItemId(itemId);
-        String nameImage = data.get().getImageName();
-        String part = "D:\\picturekakkak"+"/"+nameImage;
-        try {
-            InputStream _image = new FileInputStream(part);
-            byte[] process = IOUtils.toByteArray(_image);
-            res.setData(process);
+        List<Image> data = imageRepository.findByItemId(itemId);
+        String arrayList;
+        ArrayList list = new ArrayList();
+        String part = "D:\\picturekakkak"+"/";
+        for (int i = 0;i<data.size();i++){
+            arrayList = data.get(i).getImageName();
+            String partImg =part+arrayList;
+            try {
+                InputStream inputStream = new FileInputStream(partImg);
+                byte[] process = IOUtils.toByteArray(inputStream);
+                list.add(process);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                res.setData(e);
+                res.setData(0);
+                res.setMessage("fail to list...");
+            }
+            System.out.println(list.toArray());
             res.setStatus(1);
-            res.setMessage("success...");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            res.setStatus(0);
-            res.setMessage("error");
+            res.setMessage("list images success...");
+            res.setData(list.toArray());
         }
         return res;
     }
+
+//    @GetMapping("find/{itemId}")
+//    public Object listImage(@PathVariable int itemId) throws IOException {
+//        APIResponse res = new APIResponse();
+//        Optional<Image> data = Optional.ofNullable(imageRepository.findByItemId(itemId));
+//        String nameImage = data.get().getImageName();
+//        String part = "D:\\picturekakkak"+"/"+nameImage;
+//        try {
+//            InputStream _image = new FileInputStream(part);
+//            byte[] process = IOUtils.toByteArray(_image);
+//            res.setData(process);
+//            res.setStatus(1);
+//            res.setMessage("success...");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            res.setStatus(0);
+//            res.setMessage("error");
+//        }
+//        return res;
+//    }
 }
