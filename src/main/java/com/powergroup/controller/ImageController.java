@@ -75,6 +75,7 @@ public class ImageController {
                 InputStream inputStream = new FileInputStream(partImg);
                 byte[] process = IOUtils.toByteArray(inputStream);
                 list.add(process);
+                inputStream.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
