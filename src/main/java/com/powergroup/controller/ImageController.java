@@ -89,5 +89,28 @@ public class ImageController {
         }
         return res;
     }
-
+    @PostMapping("/update/{id}")
+    public Object update(@PathVariable int id,@RequestParam("picture")MultipartFile file) {
+        APIResponse res = new APIResponse();
+        String partDir = "";
+        Image data = imageRepository.findById(id);
+        String nameImage = data.getImageName();
+        partDir = "D:\\picturekakkak" + "/"+nameImage;
+        File updateImages = new File(partDir);
+        try {
+            data.setImageName(nameImage);
+            imageRepository.save(data);
+            file.transferTo(updateImages);
+            res.setData(data);
+            res.setMessage("update images success...");
+            res.setStatus(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            res.setData(e);
+            res.setMessage("process fail...");
+            res.setStatus(0);
+        }
+        System.out.println("++++++======================++++++++>"+data);
+        return res;
+    }
 }

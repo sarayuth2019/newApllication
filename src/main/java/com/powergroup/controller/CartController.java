@@ -58,11 +58,13 @@ public class CartController {
     }
 
     @GetMapping("/delete/{id}")
-    public Object delete(Cart cart, @PathVariable int id) {
+    public Object delete(@PathVariable int id) {
         APIResponse res = new APIResponse();
-        cartRepository.delete(cart);
-        res.setData(cart);
-        res.setMessage("delete items success....");
+        Optional<Cart> data = cartRepository.findById(id);
+        int cartIdToDelete= data.get().getCartId();
+        cartRepository.deleteById(cartIdToDelete);
+        res.setData(cartIdToDelete);
+        res.setMessage("delete items success...." + cartIdToDelete);
         return res;
     }
 

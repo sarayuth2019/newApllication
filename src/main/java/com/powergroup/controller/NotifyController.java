@@ -39,8 +39,8 @@ public class NotifyController {
         return res;
     }
 
-    @PostMapping("/delete/user")
-    public Object delete(int user) {
+    @PostMapping("/delete/{user}")
+    public Object delete(@PathVariable int user) {
         APIResponse res = new APIResponse();
         notifyRepository.deleteByUserId(user);
         res.setStatus(1);
