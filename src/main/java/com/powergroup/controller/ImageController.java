@@ -1,5 +1,7 @@
 package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
+import com.powergroup.model.bean.ImagesReponse;
+import com.powergroup.model.bean.ImagesRepository;
 import com.powergroup.model.service.ImageRepository;
 import com.powergroup.model.table.Image;
 import com.powergroup.util.ContextUtil;
@@ -64,31 +66,34 @@ public class ImageController {
     @GetMapping("/{itemId}")
     public Object listImg(@PathVariable int itemId){
         APIResponse res = new APIResponse();
+        ImagesReponse imagesReponse = new ImagesReponse();
         List<Image> data = imageRepository.findByItemId(itemId);
         String arrayList;
-        ArrayList list = new ArrayList();
+        ArrayList listDataImages = new ArrayList();
+        ArrayList arrayId = new ArrayList();
         String part = "D:\\picturekakkak"+"/";
         for (int i = 0;i<data.size();i++){
             arrayList = data.get(i).getImageName();
+            arrayId.add(data.get(i).getItemId());
             String partImg =part+arrayList;
             try {
                 InputStream inputStream = new FileInputStream(partImg);
                 byte[] process = IOUtils.toByteArray(inputStream);
-                list.add(process);
+                listDataImages.add(process);
                 inputStream.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
-                res.setData(e);
-                res.setData(0);
-                res.setMessage("fail to list...");
+                imagesReponse.setDataImages(e);
+                imagesReponse.setStatus(0);
+                imagesReponse.setMessage("fail to list...");
             }
-            System.out.println(list.toArray());
-            res.setStatus(1);
-            res.setMessage("list images success...");
-            res.setData(list.toArray());
+            imagesReponse.setStatus(1);
+            imagesReponse.setMessage("list images success...");
+            imagesReponse.setDataId(arrayId);
+            imagesReponse.setDataImages(listDataImages);
         }
-        return res;
+        return imagesReponse;
     }
     @PostMapping("/update/{id}")
     public Object update(@PathVariable int id,@RequestParam("picture")MultipartFile file) {
