@@ -1,7 +1,6 @@
 package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.bean.ImagesReponse;
-import com.powergroup.model.bean.ImagesRepository;
 import com.powergroup.model.service.ImageRepository;
 import com.powergroup.model.table.Image;
 import com.powergroup.util.ContextUtil;
@@ -65,7 +64,6 @@ public class ImageController {
 
     @GetMapping("/{itemId}")
     public Object listImg(@PathVariable int itemId){
-        APIResponse res = new APIResponse();
         ImagesReponse imagesReponse = new ImagesReponse();
         List<Image> data = imageRepository.findByItemId(itemId);
         String arrayList;
