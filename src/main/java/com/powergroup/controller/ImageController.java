@@ -22,12 +22,13 @@ public class ImageController {
     private ImageRepository imageRepository;
     @Autowired
     private ContextUtil contextUtil;
+    String configParse = "D:\\picturekakkak/";
     @PostMapping("/save")
     public Object imageSave(Image image,@RequestParam("picture") MultipartFile file){
         APIResponse res = new APIResponse();
         Random xxx = new Random();
         int randomnumber = xxx.nextInt(100000000);
-        String part = "D:\\picturekakkak"+"/"+ file.getName()+randomnumber+".png";
+        String part = configParse+ file.getName()+randomnumber+".png";
         String nameImage = file.getName()+randomnumber+".png";
         File file1 = new File(part);
         try {
@@ -42,6 +43,28 @@ public class ImageController {
         res.setData(1);
         return res;
     }
+    @GetMapping("/deleteId/{id}")
+    public Object deleteId(@PathVariable int id){
+        APIResponse res = new APIResponse();
+        String parseImage = "";
+        Image data = imageRepository.findById(id);
+        imageRepository.deleteById(id);
+        String nameFile = data.getImageName();
+        parseImage = configParse + nameFile;
+        Path fileToDeletePath = Paths.get(parseImage);
+        try {
+            Files.delete(fileToDeletePath);
+            res.setData("delete By Id = "+id);
+            res.setMessage("delete success...");
+            res.setStatus(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            res.setStatus(0);
+            res.setMessage("delete fail...");
+            res.setData(e);
+        }
+        return res;
+    }
     @PostMapping("/deleteItemId")
     public Object delete(int itemId) throws IOException {
         APIResponse res = new APIResponse();
@@ -49,7 +72,7 @@ public class ImageController {
         List<Image> data = imageRepository.findByItemId(itemId);
         for (int i = 0; i < data.size(); i++) {
             String nameImage = data.get(i).getImageName();
-            parseImage = "D:\\picturekakkak" + "/" + nameImage;
+            parseImage = configParse + nameImage;
 //            Files.createFile(Paths.get(parseImage));
             Path fileToDeletePath = Paths.get(parseImage);
             Files.delete(fileToDeletePath);
@@ -69,15 +92,15 @@ public class ImageController {
         String arrayList;
         ArrayList listDataImages = new ArrayList();
         ArrayList arrayId = new ArrayList();
-        String part = "D:\\picturekakkak"+"/";
+        String part = configParse;
         for (int i = 0;i<data.size();i++){
             arrayList = data.get(i).getImageName();
-            arrayId.add(data.get(i).getItemId());
             String partImg =part+arrayList;
             try {
                 InputStream inputStream = new FileInputStream(partImg);
                 byte[] process = IOUtils.toByteArray(inputStream);
                 listDataImages.add(process);
+                arrayId.add(data.get(i).getId() );
                 inputStream.close();
 
             } catch (IOException e) {
@@ -86,6 +109,7 @@ public class ImageController {
                 imagesReponse.setStatus(0);
                 imagesReponse.setMessage("fail to list...");
             }
+            System.out.println(arrayId);
             imagesReponse.setStatus(1);
             imagesReponse.setMessage("list images success...");
             imagesReponse.setDataId(arrayId);
@@ -99,7 +123,7 @@ public class ImageController {
         String partDir = "";
         Image data = imageRepository.findById(id);
         String nameImage = data.getImageName();
-        partDir = "D:\\picturekakkak" + "/"+nameImage;
+        partDir = configParse+nameImage;
         File updateImages = new File(partDir);
         try {
             data.setImageName(nameImage);
