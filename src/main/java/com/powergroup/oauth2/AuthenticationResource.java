@@ -28,8 +28,8 @@ public class AuthenticationResource {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping(path = "/authorizeShop")
-    public ResponseEntity<Object> authenticateShop(@RequestParam String email, @RequestParam String password) {
+    @PostMapping(path = "/authorizeUser")
+    public ResponseEntity<Object> authenticateUser(@RequestParam String email, @RequestParam String password) {
         Optional<Map<String, Object>> optUser = userService.login(new LoginBean(email, password));
         if (optUser.isPresent()) {
             return ResponseEntity.ok().body(optUser.get());

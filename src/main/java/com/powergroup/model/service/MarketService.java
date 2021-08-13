@@ -31,6 +31,7 @@ public class MarketService {
                 ret.put("data", 1);
                 ret.put("token", tokenService.createTokenMarket(customer));
                 ret.put("marketId", customer.getMarketId());
+                ret.put("statusMarket",customer.getStatusMarket());
                 return Optional.of(ret);
             } else {
                 ret.put("data", 0);
