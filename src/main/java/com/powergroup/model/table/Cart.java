@@ -17,15 +17,10 @@ public class Cart {
     private int cartId;
 
     @Column
-    private int status;
+    private String status;
 
     @Column(name = "name_cart")
     private String nameCart;
-
-    @Column(name = "image_cart")
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private String imageCart;
 
     @Column
     private int number;

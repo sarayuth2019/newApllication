@@ -37,10 +37,6 @@ public class Notify {
     @Column(name = "item_id")
     private int itemId;
 
-    @Column
-    @Lob
-    @Basic(fetch = FetchType.EAGER)
-    private String image;
 
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")

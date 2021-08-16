@@ -18,15 +18,10 @@ public class Order {
     private int orderId;
 
     @Column
-    private int status;
+    private String status;
 
     @Column(name = "name_order")
     private String nameOrder;
-
-    @Column(name = "image_order")
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private String imageOrder;
 
     @Column
     private int number;
