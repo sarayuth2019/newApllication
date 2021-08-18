@@ -5,6 +5,7 @@ import com.powergroup.model.service.OrderRepository;
 import com.powergroup.model.table.Order;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,13 +50,15 @@ public class OrderController {
         return res;
     }
 
-    @GetMapping("/delete/{id}")
-    public Object delete(Order order, @PathVariable int id) {
+    @PostMapping("/delete")
+    public Object delete(int id) {
         APIResponse res = new APIResponse();
-        orderRepository.delete(order);
-        res.setData(order);
+        Optional<Order> data = orderRepository.findById(id);
+        String name = data.get().getNameOrder();
+        orderRepository.deleteById(id);
+        res.setData(data);
         res.setStatus(1);
-        res.setMessage("delete success...");
+        res.setMessage("delete "+name+" success...");
         return res;
     }
 
@@ -92,12 +95,12 @@ public class OrderController {
     }
 
     @PostMapping("/find/user/{user}")
-    public Object findstatus(Order order, @PathVariable int user) {
+    public Object findStatus(Order order, @PathVariable int user) {
         APIResponse res = new APIResponse();
-        List<Order> checkstatus = orderRepository.findByStatusAndUserId(order.getStatus(), order.getUserId());
+        List<Order> checkStatus = orderRepository.findByStatusAndUserId(order.getStatus(), order.getUserId());
         res.setMessage("find success...");
         res.setStatus(1);
-        res.setData(checkstatus);
+        res.setData(checkStatus);
         return res;
     }
 }

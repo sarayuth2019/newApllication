@@ -41,6 +41,22 @@ public class Order {
     @Column(name = "item_id")
     private int item;
 
+    @Column(name = "date_begin")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
+    private Date dateBegin;
+
+    @Column(name = "date_final")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
+    private Date dateFinal;
+
+    @Column(name = "deal_begin")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
+    private Date dealBegin;
+
+    @Column(name = "deal_final")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
+    private Date dealFinal;
+
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
     private Date createDate = new Date();
