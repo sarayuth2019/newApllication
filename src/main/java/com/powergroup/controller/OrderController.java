@@ -5,7 +5,6 @@ import com.powergroup.model.service.OrderRepository;
 import com.powergroup.model.table.Order;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +37,15 @@ public class OrderController {
         response.setMessage("update success...");
         response.setData(order);
         return response;
+    }
+    @PostMapping("/listStatus")
+    public Object listStatus(String status){
+        APIResponse rs = new APIResponse();
+        orderRepository.findByStatus(status);
+        rs.setData(rs);
+        rs.setStatus(1);
+        rs.setMessage("list Order by Status...");
+        return rs;
     }
 
     @GetMapping("/list")
@@ -103,4 +111,5 @@ public class OrderController {
         res.setData(checkStatus);
         return res;
     }
+
 }

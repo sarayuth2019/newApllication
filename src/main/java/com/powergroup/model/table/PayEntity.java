@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -32,6 +33,10 @@ public class PayEntity {
     private int amount;
 
     @Column
+    //เลขท้ายบัญชี
+    private int lastNumber;
+
+    @Column
     //ธนาคารที่โอนเงิน
     private String bankTransfer;
 
@@ -40,7 +45,14 @@ public class PayEntity {
     private String bankReceive;
 
     @Column
-    private String imageTransfer;
+    //เดือน/วัน/ปี
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
+    private Date date;
+
+    @Column
+    //ชั่วโมง:นาที:วืนาที
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "HH.mm.ss")
+    private Time time;
 
     @Column
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")

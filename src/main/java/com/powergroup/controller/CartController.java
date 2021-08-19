@@ -47,6 +47,15 @@ public class CartController {
         response.setData(cart);
         return response;
     }
+    @PostMapping("/listStatus")
+    public Object listStatus(String status){
+        APIResponse rs = new APIResponse();
+        cartRepository.findByStatus(status);
+        rs.setData(rs);
+        rs.setStatus(1);
+        rs.setMessage("list Cart by Status...");
+        return rs;
+    }
 
     @GetMapping("/list")
     public Object list() {
