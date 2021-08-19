@@ -29,6 +29,9 @@ public class PayEntity {
     private int itemId;
 
     @Column
+    private int amount;
+
+    @Column
     //ธนาคารที่โอนเงิน
     private String bankTransfer;
 
@@ -36,9 +39,7 @@ public class PayEntity {
     //ธนาคารรับเงิน
     private String bankReceive;
 
-    @Column(name = "image_transfer")
-    @Lob
-    @Basic(fetch = FetchType.EAGER)
+    @Column
     private String imageTransfer;
 
     @Column
