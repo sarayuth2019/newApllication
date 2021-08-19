@@ -68,6 +68,15 @@ public class PayController {
         response.setMessage("listAll Pay success...");
         return response;
     }
+    @GetMapping("/listByStatus/{status}")
+    public Object listStatus(@PathVariable String status){
+        ImagesReponse imagesReponse = new ImagesReponse();
+        List<PayEntity> data = payRepository.findByStatus(status);
+        imagesReponse.setDataId(data);
+        imagesReponse.setStatus(1);
+        imagesReponse.setMessage("list by Status");
+        return imagesReponse;
+    }
     @PostMapping("/user")
     public Object listUser(int userId){
         APIResponse response = new APIResponse();
