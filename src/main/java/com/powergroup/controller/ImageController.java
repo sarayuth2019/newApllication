@@ -33,7 +33,7 @@ public class ImageController {
     public Object imageSave(Image image,@RequestParam("picture") MultipartFile file){
         APIResponse res = new APIResponse();
         String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
-        File file1 = new File("%s%s".formatted(configParse, nameImage));
+        File file1 = new File("%s%s".formatted(configParse,nameImage));
         try {
             file.transferTo(file1);
         } catch (IOException e) {

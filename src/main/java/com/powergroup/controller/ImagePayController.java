@@ -7,6 +7,7 @@ import com.powergroup.model.table.ImagePay;
 import com.powergroup.util.ContextUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +21,9 @@ public class ImagePayController {
     private ImagePayRepository payRepository;
     @Autowired
     private ContextUtil contextUtil;
-    String configParse = "D:\\picturekakkak/";
+
+    @Value("${app.image_path}")
+    String configParse;
 
     @PostMapping("/save")
     private Object save(ImagePay imagePay,@RequestParam("picture") MultipartFile file){
