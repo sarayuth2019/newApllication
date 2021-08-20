@@ -4,10 +4,12 @@ import com.powergroup.model.bean.ImagesReponse;
 import com.powergroup.model.service.ImageRepository;
 import com.powergroup.model.table.Image;
 import com.powergroup.util.ContextUtil;
+import com.powergroup.util.ResourceIdGenerate;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -20,17 +22,18 @@ import java.util.*;
 public class ImageController {
     @Autowired
     private ImageRepository imageRepository;
+
     @Autowired
     private ContextUtil contextUtil;
-    String configParse = "D:\\picturekakkak/";
+
+    @Value("${app.image_path}")
+    String configParse;
+
     @PostMapping("/save")
     public Object imageSave(Image image,@RequestParam("picture") MultipartFile file){
         APIResponse res = new APIResponse();
-        Random xxx = new Random();
-        int randomnumber = xxx.nextInt(100000000);
-        String part = configParse+ file.getName()+randomnumber+".png";
-        String nameImage = file.getName()+randomnumber+".png";
-        File file1 = new File(part);
+        String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
+        File file1 = new File("%s%s".formatted(configParse, nameImage));
         try {
             file.transferTo(file1);
         } catch (IOException e) {
