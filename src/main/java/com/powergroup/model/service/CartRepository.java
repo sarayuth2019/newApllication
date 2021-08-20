@@ -15,6 +15,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 
     List<Cart> findByMarketId(int marketId);
 
+    List<Cart> findByStatus(String status);
 }
 
 

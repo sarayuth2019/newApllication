@@ -5,12 +5,9 @@ import com.powergroup.model.bean.ImagesReponse;
 import com.powergroup.model.service.PayRepository;
 import com.powergroup.model.table.PayEntity;
 import com.powergroup.util.ContextUtil;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,18 +18,9 @@ public class PayController {
     private PayRepository payRepository;
     @Autowired
     private ContextUtil contextUtil;
-    String configParse = "D:\\picturekakkak/";
     @PostMapping("/save")
-    public Object save(PayEntity payEntity, @RequestParam("picture")MultipartFile file){
+    public Object save(PayEntity payEntity){
         APIResponse apiResponse = new APIResponse();
-        String parse = configParse+file.getOriginalFilename()+".png";
-        File file1 = new File(parse);
-        try {
-            file.transferTo(file1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        payEntity.setImageTransfer(file.getOriginalFilename());
         PayEntity data = payRepository.save(payEntity);
         apiResponse.setMessage("save success...");
         apiResponse.setData(data);
@@ -41,23 +29,12 @@ public class PayController {
     }
     @GetMapping("/listId/{id}")
     public Object listId(@PathVariable int id) {
-        ImagesReponse imagesReponse = new ImagesReponse();
+        APIResponse response = new APIResponse();
         Optional<PayEntity> data = payRepository.findById(id);
-        String parse = configParse +data.get().getImageTransfer()+".png";
-        try {
-            InputStream _image = new FileInputStream(parse);
-            byte[] process = IOUtils.toByteArray(_image);
-            imagesReponse.setDataImages(process);
-            imagesReponse.setDataId(data);
-            imagesReponse.setStatus(1);
-            imagesReponse.setMessage("success...");
-            _image.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            imagesReponse.setStatus(0);
-            imagesReponse.setMessage("error");
-        }
-        return imagesReponse;
+        response.setStatus(1);
+        response.setData(data);
+        response.setMessage("list payId success... ");
+        return response;
     }
     @GetMapping("/list")
     public Object list(){
@@ -67,6 +44,15 @@ public class PayController {
         response.setData(data);
         response.setMessage("listAll Pay success...");
         return response;
+    }
+    @PostMapping("/listByStatus")
+    public Object listStatus(String status){
+        ImagesReponse imagesReponse = new ImagesReponse();
+        List<PayEntity> data = payRepository.findByStatus(status);
+        imagesReponse.setDataId(data);
+        imagesReponse.setStatus(1);
+        imagesReponse.setMessage("list by Status");
+        return imagesReponse;
     }
     @PostMapping("/user")
     public Object listUser(int userId){
