@@ -45,6 +45,7 @@ public class PayEntity {
     private String bankReceive;
 
     @Column
+    @Temporal(TemporalType.DATE)
     //เดือน/วัน/ปี
     @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MMM-yyyy")
     private Date date;

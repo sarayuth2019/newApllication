@@ -40,10 +40,10 @@ public class ImageController {
             e.printStackTrace();
         }
         image.setImageName(nameImage);
-        imageRepository.save(image);
-        res.setData(image);
+        var data = imageRepository.save(image);
+        res.setData(data);
         res.setMessage("success...");
-        res.setData(1);
+        res.setStatus(1);
         return res;
     }
     @GetMapping("/deleteId/{id}")

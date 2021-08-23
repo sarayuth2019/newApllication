@@ -39,7 +39,7 @@ public class Order {
     private int userId;
 
     @Column(name = "item_id")
-    private int item;
+    private int itemId;
 
     @Column(name = "date_begin")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MMM-yyyy")
