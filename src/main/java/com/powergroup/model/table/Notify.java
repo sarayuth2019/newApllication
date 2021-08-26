@@ -17,9 +17,6 @@ public class Notify {
     private int notifyId;
 
     @Column
-    private String name;
-
-    @Column
     private int amount;
 
     @Column
@@ -33,7 +30,6 @@ public class Notify {
 
     @Column(name = "item_id")
     private int payId;
-
 
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")

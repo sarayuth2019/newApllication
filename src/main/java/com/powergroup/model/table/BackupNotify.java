@@ -17,9 +17,6 @@ public class BackupNotify {
     private int backupId;
 
     @Column
-    private String name;
-
-    @Column
     private int amount;
 
     @Column
