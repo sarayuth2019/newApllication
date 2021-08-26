@@ -20,10 +20,7 @@ public class Notify {
     private String name;
 
     @Column
-    private int number;
-
-    @Column
-    private int price;
+    private int amount;
 
     @Column
     private String status;
@@ -35,7 +32,7 @@ public class Notify {
     private int marketId;
 
     @Column(name = "item_id")
-    private int itemId;
+    private int payId;
 
 
     @Column(name = "create_date")

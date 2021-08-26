@@ -20,10 +20,7 @@ public class BackupNotify {
     private String name;
 
     @Column
-    private int number;
-
-    @Column
-    private int price;
+    private int amount;
 
     @Column
     private String status;
@@ -35,7 +32,7 @@ public class BackupNotify {
     private int marketId;
 
     @Column(name = "item_id")
-    private int itemId;
+    private int payId;
 
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
