@@ -27,7 +27,7 @@ public class PayController {
         apiResponse.setStatus(1);
         return apiResponse;
     }
-    @GetMapping("/listId")
+    @PostMapping("/listId")
     public Object listId(int id) {
         APIResponse response = new APIResponse();
         Optional<PayEntity> data = payRepository.findById(id);
@@ -36,7 +36,7 @@ public class PayController {
         response.setMessage("list payId success... ");
         return response;
     }
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Object list(){
         APIResponse response = new APIResponse();
         List<PayEntity> data= payRepository.findAll();
