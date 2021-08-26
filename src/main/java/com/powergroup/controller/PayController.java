@@ -8,7 +8,6 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +27,8 @@ public class PayController {
         apiResponse.setStatus(1);
         return apiResponse;
     }
-    @GetMapping("/listId/{id}")
-    public Object listId(@PathVariable int id) {
+    @GetMapping("/listId")
+    public Object listId(int id) {
         APIResponse response = new APIResponse();
         Optional<PayEntity> data = payRepository.findById(id);
         response.setStatus(1);
@@ -37,7 +36,7 @@ public class PayController {
         response.setMessage("list payId success... ");
         return response;
     }
-    @GetMapping("/list")
+    @PostMapping("/list")
     public Object list(){
         APIResponse response = new APIResponse();
         List<PayEntity> data= payRepository.findAll();
