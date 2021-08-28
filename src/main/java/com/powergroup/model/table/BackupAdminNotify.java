@@ -10,16 +10,15 @@ import java.util.Date;
 @ToString
 @Entity(name = "backup_admin_notify_entity")
 public class BackupAdminNotify {
-
         @Id
-        @Column(name = "notifyAdmin_id")
+        @Column(name = "backup_admin_id")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int notifyId;
+        private int backupId;
 
         @Column
         private String status;
 
-        @Column(name = "item_id")
+        @Column(name = "pay_id")
         private int payId;
 
         @Column(name = "create_date")

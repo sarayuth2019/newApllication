@@ -9,12 +9,12 @@ import java.util.Date;
 
 @Data
 @ToString
-@Entity(name = "notify_entity")
-public class Notify {
+@Entity(name = "user_backup_notify_entity")
+public class UserBackupNotify {
+    @Column(name = "user_backup_id")
     @Id
-    @Column(name = "notify_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int notifyId;
+    private int backupId;
 
     @Column
     private int amount;
@@ -25,10 +25,7 @@ public class Notify {
     @Column(name = "user_id")
     private int userId;
 
-    @Column(name = "market_id")
-    private int marketId;
-
-    @Column(name = "item_id")
+    @Column(name = "pay_id")
     private int payId;
 
     @Column(name = "create_date")

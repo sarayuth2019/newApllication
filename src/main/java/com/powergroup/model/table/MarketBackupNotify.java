@@ -6,12 +6,11 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Entity(name = "market_backup_notify_entity")
 @Data
 @ToString
-@Entity(name = "backup_notify_entity")
-public class BackupNotify {
-    @Column(name = "backup_id")
+public class MarketBackupNotify {
+    @Column(name = "backup_market_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int backupId;
@@ -22,13 +21,10 @@ public class BackupNotify {
     @Column
     private String status;
 
-    @Column(name = "user_id")
-    private int userId;
-
     @Column(name = "market_id")
     private int marketId;
 
-    @Column(name = "item_id")
+    @Column(name = "pay_id")
     private int payId;
 
     @Column(name = "create_date")

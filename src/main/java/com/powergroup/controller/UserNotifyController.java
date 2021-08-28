@@ -1,9 +1,8 @@
 package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
-import com.powergroup.model.service.NotifyRepository;
-import com.powergroup.model.table.Market;
-import com.powergroup.model.table.Notify;
+import com.powergroup.model.service.UserNotifyRepository;
+import com.powergroup.model.table.UserNotify;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Notify")
-public class NotifyController {
+@RequestMapping("/UserNotify")
+public class UserNotifyController {
     @Autowired
-    private NotifyRepository notifyRepository;
+    private UserNotifyRepository notifyRepository;
     @Autowired
     private ContextUtil contextUtil;
 
     @PostMapping("/save")
-    public Object save(Notify notify) {
+    public Object save(UserNotify notify) {
         APIResponse res = new APIResponse();
         notifyRepository.save(notify);
         res.setData(notify);
@@ -33,13 +32,13 @@ public class NotifyController {
     public Object list(int user) {
         APIResponse res = new APIResponse();
         //Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
-        List<Notify> getList = notifyRepository.findByUserId(user);
+        List<UserNotify> getList = notifyRepository.findByUserId(user);
         res.setData(getList);
         res.setMessage("List User...");
         return res;
     }
 
-    @PostMapping("/delete/{user}")
+    @GetMapping("/deleteByUserId/{user}")
     public Object delete(@PathVariable int user) {
         APIResponse res = new APIResponse();
         notifyRepository.deleteByUserId(user);
@@ -48,31 +47,20 @@ public class NotifyController {
         res.setMessage("delete user success....");
         return res;
     }
-
-    @PostMapping("/list/market")
-    public Object listMarketId(int market) {
+    @GetMapping("/deleteId/{id}")
+    public Object deleteId(@PathVariable int id){
         APIResponse response = new APIResponse();
-        List<Notify> list = notifyRepository.findByMarketId(market);
-        response.setData(list);
-        response.setMessage("List marketId...");
-        response.setStatus(1);
+        Optional<UserNotify> data = notifyRepository.findById(id);
+        notifyRepository.deleteByUserId(id);
+        response.setData(data);
+        response.setData(1);
+        response.setMessage("delete success...");
         return response;
     }
-
-    @PostMapping("/delete/{market}")
-    private Object deleteMarketId(@PathVariable int market) {
-        APIResponse response = new APIResponse();
-        notifyRepository.deleteByMarketId(market);
-        response.setData(market);
-        response.setStatus(1);
-        response.setMessage("delete marketId success...");
-        return response;
-    }
-
     @GetMapping("/list")
     public Object check() {
         APIResponse res = new APIResponse();
-        List<Notify> getList = notifyRepository.findAll();
+        List<UserNotify> getList = notifyRepository.findAll();
         res.setData(getList);
         return res;
     }

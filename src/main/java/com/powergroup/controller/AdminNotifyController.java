@@ -4,10 +4,10 @@ import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.AdminRepository;
 import com.powergroup.model.table.AdminNotify;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("Admin")
@@ -30,6 +30,16 @@ public class AdminNotifyController {
         response.setStatus(1);
         response.setData(data);
         response.setMessage("success");
+        return response;
+    }
+    @GetMapping("/delete/{id}")
+    public Object deleteId(@PathVariable int id){
+        APIResponse response = new APIResponse();
+        Optional<AdminNotify> data = adminRepository.findById(id);
+        adminRepository.deleteById(id);
+        response.setData(data);
+        response.setStatus(1);
+        response.setMessage("delete success...");
         return response;
     }
 }

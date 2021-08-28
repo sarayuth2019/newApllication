@@ -6,20 +6,27 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Data
 @ToString
-@Entity(name = "admin_notify_entity")
-public class AdminNotify {
+@Entity(name = "user_notify_entity")
+public class UserNotify {
     @Id
-    @Column(name = "notifyAdmin_id")
+    @Column(name = "user_notify_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int notifyId;
 
     @Column
+    private int amount;
+
+    @Column
     private String status;
 
-    @Column(name = "item_id")
-    private int itemId;
+    @Column(name = "user_id")
+    private int userId;
+
+    @Column(name = "pay_id")
+    private int payId;
 
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")

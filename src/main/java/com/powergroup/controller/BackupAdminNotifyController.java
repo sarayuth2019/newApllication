@@ -3,7 +3,6 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 
 import com.powergroup.model.service.BackupAdminRepository;
-import com.powergroup.model.service.BackupNotifyRepository;
 import com.powergroup.model.table.BackupAdminNotify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
