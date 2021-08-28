@@ -30,7 +30,7 @@ public class NotifyController {
     }
 
     @PostMapping("/list/user")
-    public Object list(@PathVariable int user) {
+    public Object list(int user) {
         APIResponse res = new APIResponse();
         //Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
         List<Notify> getList = notifyRepository.findByUserId(user);
@@ -49,8 +49,8 @@ public class NotifyController {
         return res;
     }
 
-    @PostMapping("/list/{market}}")
-    public Object listMarketId(@PathVariable int market) {
+    @PostMapping("/list/market")
+    public Object listMarketId(int market) {
         APIResponse response = new APIResponse();
         List<Notify> list = notifyRepository.findByMarketId(market);
         response.setData(list);
@@ -59,8 +59,8 @@ public class NotifyController {
         return response;
     }
 
-    @PostMapping("/delete/market")
-    private Object deleteMarketId(int market) {
+    @PostMapping("/delete/{market}")
+    private Object deleteMarketId(@PathVariable int market) {
         APIResponse response = new APIResponse();
         notifyRepository.deleteByMarketId(market);
         response.setData(market);
