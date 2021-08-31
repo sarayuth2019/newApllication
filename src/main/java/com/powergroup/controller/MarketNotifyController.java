@@ -5,7 +5,6 @@ import com.powergroup.model.service.MarketNotifyRepository;
 import com.powergroup.model.table.MarketNotify;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,7 +51,7 @@ public class MarketNotifyController {
         List<MarketNotify> data = notifyRepository.findByMarketId(marketId);
         notifyRepository.deleteByMarketId(marketId);
         rs.setData(data);
-        rs.setData(1);
+        rs.setStatus(1);
         rs.setMessage("delete By marketId success...");
      return rs;
     }

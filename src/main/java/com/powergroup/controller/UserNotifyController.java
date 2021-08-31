@@ -50,10 +50,10 @@ public class UserNotifyController {
     @GetMapping("/deleteId/{id}")
     public Object deleteId(@PathVariable int id){
         APIResponse response = new APIResponse();
-        Optional<UserNotify> data = notifyRepository.findById(id);
-        notifyRepository.deleteByUserId(id);
+        Optional<UserNotify>data = notifyRepository.findById(id);
+        notifyRepository.deleteById(id);
         response.setData(data);
-        response.setData(1);
+        response.setStatus(1);
         response.setMessage("delete success...");
         return response;
     }
