@@ -11,15 +11,15 @@ import java.util.Date;
 @Entity(name = "admin_notify_entity")
 public class AdminNotify {
     @Id
-    @Column(name = "notifyAdmin_id")
+    @Column(name = "notify_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int notifyId;
 
     @Column
     private String status;
 
-    @Column(name = "item_id")
-    private int itemId;
+    @Column(name = "pay_id")
+    private int payId;
 
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")

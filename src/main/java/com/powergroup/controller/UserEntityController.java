@@ -56,8 +56,18 @@ public class UserEntityController {
         return response;
     }
 
+    @PostMapping("/list/id")
+    public Object listId(int id){
+        APIResponse response = new APIResponse();
+        var data = userEntityRepository.findById(id);
+        response.setData(data);
+        response.setStatus(1);
+        response.setMessage("list By user Id...");
+        return response;
+    }
+
     @PostMapping("/list")
-    public Object listId() {
+    public Object list() {
         APIResponse res = new APIResponse();
         Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
         Optional<UserEntity> get = userEntityRepository.findById(dataUser.get().getUserId());

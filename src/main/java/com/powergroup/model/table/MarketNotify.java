@@ -16,7 +16,10 @@ public class MarketNotify {
     private int notifyId;
 
     @Column
-    private int amount;
+    private int count;
+
+    @Column
+    private int countRequest;
 
     @Column
     private String status;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 @Data
 @ToString
-@Entity(name = "backup_admin_notify_entity")
+@Entity(name = "admin_backup_notify_entity")
 public class BackupAdminNotify {
         @Id
         @Column(name = "backup_admin_id")
