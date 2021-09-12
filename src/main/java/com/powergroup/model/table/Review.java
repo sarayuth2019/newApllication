@@ -29,6 +29,6 @@ public class Review {
     private String content;
 
     @Column(name = "create_date")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date createDate = new Date();
 }

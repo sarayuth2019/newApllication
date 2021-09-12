@@ -45,7 +45,7 @@ public class UserEntity {
     private String phoneNumber;
 
     @Column(name = "date_register")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date dateRegister = new Date();
 
 }

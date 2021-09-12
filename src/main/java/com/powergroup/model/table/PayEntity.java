@@ -47,7 +47,7 @@ public class PayEntity {
     @Column
     @Temporal(TemporalType.DATE)
     //เดือน/วัน/ปี
-    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd-MM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok",pattern = "dd/MM/yyyy")
     private Date date;
 
     @Column
@@ -56,6 +56,6 @@ public class PayEntity {
     private Time time;
 
     @Column
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date dataTransfer = new Date();
 }

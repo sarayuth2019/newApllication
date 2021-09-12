@@ -55,7 +55,7 @@ public class Market {
     private String descriptionMarket;
 
     @Column(name = "date_register")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd-MMM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date dateRegister = new Date();
 
 }
