@@ -39,19 +39,19 @@ public class Items {
     private int marketId;
 
     @Column(name = "date_begin")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd/MM/yyyy")
     private Date dateBegin;
 
     @Column(name = "date_final")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd/MM/yyyy")
     private Date dateFinal;
 
     @Column(name = "deal_begin")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd/MM/yyyy")
     private Date dealBegin;
 
     @Column(name = "deal_final")
-    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd-MM-yyyy")
+    @JsonFormat(timezone = "Asia/Bangkok", pattern = "dd/MM/yyyy")
     private Date dealFinal;
 
     @Column(name = "create_date")
