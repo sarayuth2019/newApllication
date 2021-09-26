@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/Register")
@@ -25,9 +27,18 @@ public class MarketRegisterController {
     public Object registerMarket(Market market) {
         APIResponse res = new APIResponse();
         try {
-            Market dbUser = marketRepository.findByEmail( market.getEmail());
+            var data = marketRepository.findAll().size();
+            Market dbUser = marketRepository.findByEmail(market.getEmail());
+            System.out.println(data);
             if (dbUser == null) {
+                if (data == 0){
+                    market.setMarketId(1);
+                    market.setStatusMarket("admin");
+                    market.setPassword(encoderUtil.passwordEncoder().encode(market.getPassword()));
+                }else{
                 market.setPassword(encoderUtil.passwordEncoder().encode(market.getPassword()));
+                market.setStatusMarket("market");
+                }
                 marketRepository.save(market);
                 System.out.print(market);
                 res.setStatus(1);

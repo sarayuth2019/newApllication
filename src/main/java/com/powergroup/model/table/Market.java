@@ -16,7 +16,7 @@ import java.util.Date;
 @Entity(name = "market_entity")
 public class Market {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "market_id")
     private int marketId;
 
