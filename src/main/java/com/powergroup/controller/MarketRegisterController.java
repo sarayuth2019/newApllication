@@ -4,19 +4,23 @@ import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.service.MarketRepository;
 import com.powergroup.model.table.Market;
 import com.powergroup.util.EncoderUtil;
+import com.powergroup.util.ResourceIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.html.Option;
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/Register")
 public class MarketRegisterController {
+    @Value("${app.image_path}")
+    String configParse;
+
     @Autowired
     private MarketRepository marketRepository;
 
@@ -24,9 +28,12 @@ public class MarketRegisterController {
     private EncoderUtil encoderUtil;
     
     @PostMapping("/market")
-    public Object registerMarket(Market market) {
+    public Object registerMarket(Market market, @RequestParam("marketImage")MultipartFile file) {
         APIResponse res = new APIResponse();
+        String part = "%s.png".formatted(new ResourceIdGenerate().resourceId());
+        File file1 = new File("%s%s".formatted(configParse,part));
         try {
+            file.transferTo(file1);
             var data = marketRepository.findAll().size();
             Market dbUser = marketRepository.findByEmail(market.getEmail());
             System.out.println(data);
@@ -39,6 +46,7 @@ public class MarketRegisterController {
                 market.setPassword(encoderUtil.passwordEncoder().encode(market.getPassword()));
                 market.setStatusMarket("market");
                 }
+                market.setImageMarket(part);
                 marketRepository.save(market);
                 System.out.print(market);
                 res.setStatus(1);
