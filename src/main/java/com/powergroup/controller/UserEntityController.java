@@ -6,15 +6,15 @@ import com.powergroup.model.service.UserRepository;
 import com.powergroup.model.table.UserEntity;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
+import com.powergroup.util.ResourceIdGenerate;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Optional;
 
 
@@ -22,8 +22,8 @@ import java.util.Optional;
 @RequestMapping(value = "/User", method = RequestMethod.GET)
 public class UserEntityController {
     @Value("${app.image_path}")
-    String configParse;      
-   
+    String configParse;
+
     @Autowired
     private UserRepository userEntityRepository;
 
@@ -56,8 +56,22 @@ public class UserEntityController {
     }
 
     @PostMapping("/update")
-    public Object update(UserEntity userEntity) {
+    public Object update(UserEntity userEntity, int id, @Param("userImage") MultipartFile file) {
         APIResponse response = new APIResponse();
+        var data = userEntityRepository.findById(id);
+        if (file != null) {
+            String part = configParse + data.get().getImageUser();
+            File updateImage = new File(part);
+            try {
+                file.transferTo(updateImage);
+                userEntity.setImageUser(data.get().getImageUser());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+                userEntity.setImageUser(data.get().getImageUser());
+        }
+        userEntity.setUserId(data.get().getUserId());
         encoderUtil.passwordEncoder();
         userEntityRepository.save(userEntity);
         response.setMessage("Update User success...");
@@ -67,7 +81,7 @@ public class UserEntityController {
     }
 
     @PostMapping("/list/id")
-    public Object listId(int id){
+    public Object listId(int id) {
         APIResponse response = new APIResponse();
         var data = userEntityRepository.findById(id);
         response.setData(data);
@@ -81,11 +95,11 @@ public class UserEntityController {
         ImagesReponse res = new ImagesReponse();
         Optional<UserEntity> dataUser = contextUtil.getUserDataFromContext();
         Optional<UserEntity> get = userEntityRepository.findById(dataUser.get().getUserId());
-        String part = configParse+ get.get().getImageUser();
+        String part = configParse + get.get().getImageUser();
         byte[] process = new byte[0];
         try {
             InputStream inputStream = new FileInputStream(part);
-             process = IOUtils.toByteArray(inputStream);
+            process = IOUtils.toByteArray(inputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

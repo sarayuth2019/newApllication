@@ -9,14 +9,13 @@ import com.powergroup.util.EncoderUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Optional;
 
 @RestController
@@ -60,13 +59,28 @@ public class MarketController {
     }
 
     @PostMapping("/update")
-    public Object update(Market customer) {
+    public Object update(Market market, int id, @Param("marketImage") MultipartFile file) {
         APIResponse response = new APIResponse();
+        var data = marketRepository.findById(id);
+        if (file != null) {
+            String part = configParse + data.get().getImageMarket();
+            File updateImage = new File(part);
+            try {
+                file.transferTo(updateImage);
+                market.setImageMarket(data.get().getImageMarket());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            market.setImageMarket(data.get().getImageMarket());
+        }
+        market.setMarketId(id);
+        market.setStatusMarket(data.get().getStatusMarket());
         encoderUtil.passwordEncoder();
-        marketRepository.save(customer);
+        marketRepository.save(market);
         response.setMessage("Update market success...");
         response.setStatus(1);
-        response.setData(customer);
+        response.setData(market);
         return response;
     }
 
@@ -75,7 +89,7 @@ public class MarketController {
         ImagesReponse res = new ImagesReponse();
         Optional<Market> dataCustomer = contextUtil.getMarketDataFromContext();
         Optional<Market> get = marketRepository.findById(dataCustomer.get().getMarketId());
-        String part = configParse+get.get().getImageMarket();
+        String part = configParse + get.get().getImageMarket();
         byte[] process = new byte[0];
         try {
             InputStream inputStream = new FileInputStream(part);
@@ -92,7 +106,7 @@ public class MarketController {
     }
 
     @PostMapping("/list/id")
-    public Object listId(int id){
+    public Object listId(int id) {
         APIResponse res = new APIResponse();
         var data = marketRepository.findById(id);
         res.setData(data);
