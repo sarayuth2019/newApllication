@@ -62,17 +62,18 @@ public class MarketController {
     public Object update(Market market, int id, @Param("marketImage") MultipartFile file) {
         APIResponse response = new APIResponse();
         var data = marketRepository.findById(id);
+        String marketImage = data.get().getImageMarket();
         if (file != null) {
-            String part = configParse + data.get().getImageMarket();
+            String part = configParse + marketImage;
             File updateImage = new File(part);
             try {
                 file.transferTo(updateImage);
-                market.setImageMarket(data.get().getImageMarket());
+                market.setImageMarket(marketImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            market.setImageMarket(data.get().getImageMarket());
+        } else if(file == null){
+            market.setImageMarket(marketImage);
         }
         market.setMarketId(id);
         market.setStatusMarket(data.get().getStatusMarket());

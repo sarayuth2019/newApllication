@@ -59,17 +59,18 @@ public class UserEntityController {
     public Object update(UserEntity userEntity, int id, @Param("userImage") MultipartFile file) {
         APIResponse response = new APIResponse();
         var data = userEntityRepository.findById(id);
+        String nameImage = data.get().getImageUser();
+        String part = configParse + nameImage;
+        File updateImage = new File(part);
         if (file != null) {
-            String part = configParse + data.get().getImageUser();
-            File updateImage = new File(part);
             try {
                 file.transferTo(updateImage);
-                userEntity.setImageUser(data.get().getImageUser());
+                userEntity.setImageUser(nameImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-                userEntity.setImageUser(data.get().getImageUser());
+        }else if (file == null){
+            userEntity.setImageUser(nameImage);
         }
         userEntity.setUserId(data.get().getUserId());
         encoderUtil.passwordEncoder();
