@@ -6,16 +6,21 @@ import com.powergroup.model.service.MarketRepository;
 import com.powergroup.model.table.Market;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
+import com.powergroup.util.ResourceIdGenerate;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @RestController
@@ -62,20 +67,27 @@ public class MarketController {
     public Object update(Market market, int id, @Param("marketImage") MultipartFile file) {
         APIResponse response = new APIResponse();
         var data = marketRepository.findById(id);
+        String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
         String marketImage = data.get().getImageMarket();
-        if (file != null) {
-            String part = configParse + marketImage;
-            File updateImage = new File(part);
+        String part = configParse + nameImage;
+        String partDelete = configParse+data.get().getImageMarket();
+        File updateImage = new File(part);
             try {
-                file.transferTo(updateImage);
-                market.setImageMarket(file.getOriginalFilename());
+                if (file!=null) {
+                    Path toDelete = Paths.get(partDelete);
+                    Files.delete(toDelete);
+                    file.transferTo(updateImage);
+                    market.setImageMarket(nameImage);
+                }
+                else {
+                    market.setImageMarket(marketImage);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if(file == null){
-            market.setImageMarket(marketImage);
-        }
         market.setMarketId(id);
+        market.setPassword(data.get().getPassword());
+        market.setEmail(data.get().getEmail());
         market.setStatusMarket(data.get().getStatusMarket());
         encoderUtil.passwordEncoder();
         marketRepository.save(market);

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 
@@ -59,20 +62,27 @@ public class UserEntityController {
     public Object update(UserEntity userEntity, int id, @Param("userImage") MultipartFile file) {
         APIResponse response = new APIResponse();
         var data = userEntityRepository.findById(id);
+        String userImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
         String nameImage = data.get().getImageUser();
-        String part = configParse + nameImage;
+        String part = configParse+userImage;
+        String deletePart = configParse+data.get().getImageUser();
         File updateImage = new File(part);
-        if (file != null) {
-            try {
+        try {
+            if (file != null){
+                Path toDelete = Paths.get(deletePart);
+                Files.delete(toDelete);
                 file.transferTo(updateImage);
-                userEntity.setImageUser(file.getOriginalFilename());
-            } catch (IOException e) {
-                e.printStackTrace();
+                userEntity.setImageUser(userImage);
+            }else {
+                userEntity.setImageUser(nameImage);
             }
-        }else if (file == null){
-            userEntity.setImageUser(nameImage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         userEntity.setUserId(data.get().getUserId());
+        userEntity.setEmail(data.get().getEmail());
+        userEntity.setPassword(data.get().getPassword());
         encoderUtil.passwordEncoder();
         userEntityRepository.save(userEntity);
         response.setMessage("Update User success...");
