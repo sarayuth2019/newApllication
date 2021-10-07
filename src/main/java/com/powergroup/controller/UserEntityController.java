@@ -111,6 +111,7 @@ public class UserEntityController {
         try {
             InputStream inputStream = new FileInputStream(part);
             process = IOUtils.toByteArray(inputStream);
+            inputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
