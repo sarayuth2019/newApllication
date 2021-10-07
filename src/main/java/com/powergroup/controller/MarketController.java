@@ -68,7 +68,7 @@ public class MarketController {
             File updateImage = new File(part);
             try {
                 file.transferTo(updateImage);
-                market.setImageMarket(marketImage);
+                market.setImageMarket(file.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
             }

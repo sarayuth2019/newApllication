@@ -65,7 +65,7 @@ public class UserEntityController {
         if (file != null) {
             try {
                 file.transferTo(updateImage);
-                userEntity.setImageUser(nameImage);
+                userEntity.setImageUser(file.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
             }
