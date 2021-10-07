@@ -67,9 +67,9 @@ public class MarketController {
     public Object update(Market market, int id, @Param("marketImage") MultipartFile file) {
         APIResponse response = new APIResponse();
         var data = marketRepository.findById(id);
-        String nameImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
-        String marketImage = data.get().getImageMarket();
-        String part = configParse + nameImage;
+        String marketImage = "%s.png".formatted(new ResourceIdGenerate().resourceId());
+        String nameImage = data.get().getImageMarket();
+        String part = configParse + marketImage;
         String partDelete = configParse+data.get().getImageMarket();
         File updateImage = new File(part);
             try {
@@ -77,10 +77,10 @@ public class MarketController {
                     Path toDelete = Paths.get(partDelete);
                     Files.delete(toDelete);
                     file.transferTo(updateImage);
-                    market.setImageMarket(nameImage);
+                    market.setImageMarket(marketImage);
                 }
                 else {
-                    market.setImageMarket(marketImage);
+                    market.setImageMarket(nameImage);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
