@@ -126,7 +126,7 @@ public class MarketController {
         byte[] process = new byte[0];
         try {
             InputStream inputStream = new FileInputStream(part);
-            IOUtils.toByteArray(inputStream);
+            process = IOUtils.toByteArray(inputStream);
             inputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
