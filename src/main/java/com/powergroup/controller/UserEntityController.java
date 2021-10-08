@@ -92,10 +92,20 @@ public class UserEntityController {
     }
 
     @PostMapping("/list/id")
-    public Object listId(int id) {
-        APIResponse response = new APIResponse();
+    public Object listId(int id) throws IOException {
+        ImagesReponse response = new ImagesReponse();
         var data = userEntityRepository.findById(id);
-        response.setData(data);
+        String part = configParse+ data.get().getImageUser();
+        byte[] process = new byte[0];
+        try {
+            InputStream inputStream = new FileInputStream(part);
+            process = IOUtils.toByteArray(inputStream);
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        response.setDataImages(process);
+        response.setDataId(data);
         response.setStatus(1);
         response.setMessage("list By user Id...");
         return response;

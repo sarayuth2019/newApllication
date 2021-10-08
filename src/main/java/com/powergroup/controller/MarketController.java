@@ -119,10 +119,20 @@ public class MarketController {
     }
 
     @PostMapping("/list/id")
-    public Object listId(int id) {
-        APIResponse res = new APIResponse();
+    public Object listId(int id) throws IOException {
+        ImagesReponse res = new ImagesReponse();
         var data = marketRepository.findById(id);
-        res.setData(data);
+        String part = configParse+data.get().getImageMarket();
+        byte[] process = new byte[0];
+        try {
+            InputStream inputStream = new FileInputStream(part);
+            IOUtils.toByteArray(inputStream);
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        res.setDataImages(process);
+        res.setDataId(data);
         res.setStatus(1);
         res.setMessage("list market by Id...");
         return res;
