@@ -55,9 +55,9 @@ public class PayController {
         return imagesReponse;
     }
     @PostMapping("/listByIdAndStatus")
-    public Object listIdAndStatus(int id,String status){
+    public Object listIdAndStatus(int userId,String status){
         APIResponse res = new APIResponse();
-        List<PayEntity> data = payRepository.findByIdAndStatus(id,status);
+        List<PayEntity> data = payRepository.findByUserIdAndStatus(userId,status);
         res.setData(data);
         res.setStatus(1);
         res.setMessage("list by id and status");

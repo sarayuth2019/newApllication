@@ -12,5 +12,5 @@ public interface PayRepository extends JpaRepository<PayEntity,Integer> {
     List<PayEntity> findByUserId(int userId);
     List<PayEntity> findByMarketId(int marketId);
     List<PayEntity> findByStatus(String status);
-    List<PayEntity> findByIdAndStatus(int id,String status);
+    List<PayEntity> findByUserIdAndStatus(int userId,String status);
 }
