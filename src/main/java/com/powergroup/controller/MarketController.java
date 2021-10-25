@@ -3,6 +3,7 @@ package com.powergroup.controller;
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.bean.ImagesReponse;
 import com.powergroup.model.service.MarketRepository;
+import com.powergroup.model.service.UserService;
 import com.powergroup.model.table.Market;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
@@ -21,6 +22,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Provider;
 import java.util.Optional;
 
 @RestController
@@ -38,6 +40,7 @@ public class MarketController {
 
     @Autowired
     private ContextUtil contextUtil;
+
 
     @Deprecated
     @PostMapping("/Login")

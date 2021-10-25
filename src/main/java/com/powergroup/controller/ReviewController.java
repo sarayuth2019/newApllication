@@ -28,11 +28,11 @@ public class ReviewController {
     }
 
     @PostMapping("/find/Items")
-    public Object findItems(int items) {
+    public Object findItems(int marketId) {
         APIResponse res = new APIResponse();
-        List<Review> getItemsId = this.reviewRepository.findByItemsId(items);
+        List<Review> getMarketId = this.reviewRepository.findByMarketId(marketId);
         res.setStatus(1);
-        res.setData(getItemsId);
+        res.setData(getMarketId);
         res.setMessage("find ItemsId...");
         return res;
     }

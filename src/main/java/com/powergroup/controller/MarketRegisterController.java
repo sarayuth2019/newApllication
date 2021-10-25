@@ -65,6 +65,7 @@ public class MarketRegisterController {
         return res;
     }
 
+
     @GetMapping("/list/market")
     public Object list() {
         APIResponse res = new APIResponse();

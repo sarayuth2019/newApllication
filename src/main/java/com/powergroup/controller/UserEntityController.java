@@ -36,6 +36,10 @@ public class UserEntityController {
     @Autowired
     private EncoderUtil encoderUtil;
 
+    @GetMapping("/test")
+    private void test (String helloWord){
+        helloWord = "Hello word";
+    }
     @Deprecated
     @PostMapping("/Login")
     public Object login(UserEntity userEntity) {

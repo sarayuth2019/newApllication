@@ -16,8 +16,8 @@ public class Review {
     @Column(name = "review_id")
     private int reviewId;
 
-    @Column(name = "items_id")
-    private int itemsId;
+    @Column(name = "market_id")
+    private int marketId;
 
     @Column(name = "user_id")
     private int userId;
