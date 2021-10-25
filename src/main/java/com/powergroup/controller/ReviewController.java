@@ -27,7 +27,7 @@ public class ReviewController {
         return response;
     }
 
-    @PostMapping("/find/Items")
+    @PostMapping("/find/MarketId")
     public Object findItems(int marketId) {
         APIResponse res = new APIResponse();
         List<Review> getMarketId = this.reviewRepository.findByMarketId(marketId);
