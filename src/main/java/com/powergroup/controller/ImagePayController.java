@@ -47,8 +47,8 @@ public class ImagePayController {
         }
         return response;
     }
-    @GetMapping("/{payId}")
-    public Object listImg(@PathVariable int payId){
+    @PostMapping("/payId")
+    public Object listImg(int payId){
         ImagesReponse res = new ImagesReponse();
         List<ImagePay> data = payRepository.findByPayId(payId);
         String arrayList;
