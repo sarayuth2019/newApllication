@@ -8,6 +8,7 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,5 +90,20 @@ public class PayController {
         response.setData(data);
         response.setStatus(1);
         return response;
+    }
+
+    @PostMapping("/listItemIdByUserId")
+    public Object listUserId(int itemId){
+        APIResponse rs = new APIResponse();
+        List<PayEntity> data = payRepository.findByItemId(itemId);
+        ArrayList UserId = new ArrayList();
+        for (int i = 0; i < data.size(); i++) {
+            int x = data.get(i).getUserId();
+            UserId.add(x);
+        }
+        rs.setData(UserId);
+        rs.setStatus(1);
+        rs.setMessage("list userId success...");
+        return rs;
     }
 }

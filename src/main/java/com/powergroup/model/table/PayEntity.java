@@ -33,6 +33,9 @@ public class PayEntity {
     private int itemId;
 
     @Column
+    private String detail;
+
+    @Column
     private int amount;
 
     @Column

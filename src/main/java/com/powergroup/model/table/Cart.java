@@ -31,6 +31,9 @@ public class Cart {
     @Column
     private int priceSell;
 
+    @Column
+    private String detail;
+
     @Column(name = "market_id")
     private int marketId;
 

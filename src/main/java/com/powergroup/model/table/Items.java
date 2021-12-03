@@ -32,6 +32,12 @@ public class Items {
     @Column
     private int count;
 
+    @Column
+    private String[] size;
+
+    @Column
+    private String[] colors;
+
     @Column(name = "count_request")
     private int countRequest;
 

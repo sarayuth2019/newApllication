@@ -30,6 +30,9 @@ public class Order {
     private int price;
 
     @Column
+    private String detail;
+
+    @Column
     private int priceSell;
 
     @Column(name = "market_id")
