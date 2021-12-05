@@ -103,12 +103,12 @@ public class PayController {
             PayId.add(p);
             UserId.add(x);
         }
-        List<PayEntity> unique = (List<PayEntity>) UserId.stream()
-                .sorted()
-                .distinct()
-                .collect(Collectors.toList());
-        System.out.println(unique);
-        rs.setData(unique);
+//        List<PayEntity> unique = (List<PayEntity>) UserId.stream()
+//                .sorted()
+//                .distinct()
+//                .collect(Collectors.toList());
+//        System.out.println(unique);
+        rs.setData(UserId);
         rs.setData1(PayId);
         rs.setStatus(1);
         rs.setMessage("list userId success...");
