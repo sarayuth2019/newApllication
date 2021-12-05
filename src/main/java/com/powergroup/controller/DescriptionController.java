@@ -28,13 +28,9 @@ public class DescriptionController {
     public Object list(@PathVariable int id){
         APIResponse rs = new APIResponse();
         Optional<Items> data = itemRepository.findById(id);
-        int price = 0;
-        String[] s = data.get().getSize();
-        System.out.println(s);
-//        if (data.get().getSize() != null ){
-//            data.get().getPrice() +  = price;
-//        }
-        rs.setData(s);
+        rs.setMessage("list by id success...");
+        rs.setStatus(1);
+        rs.setData(data);
         return rs;
     }
 }

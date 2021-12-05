@@ -8,9 +8,8 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Pay")
@@ -95,13 +94,18 @@ public class PayController {
     @PostMapping("/listItemIdByUserId")
     public Object listUserId(int itemId){
         APIResponse rs = new APIResponse();
-        List<PayEntity> data = payRepository.findByItemId(itemId);
+        List<PayEntity> data =payRepository.findByItemId(itemId);
         ArrayList UserId = new ArrayList();
         for (int i = 0; i < data.size(); i++) {
             int x = data.get(i).getUserId();
             UserId.add(x);
         }
-        rs.setData(UserId);
+        List<PayEntity> unique = (List<PayEntity>) UserId.stream()
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(unique);
+        rs.setData(unique);
         rs.setStatus(1);
         rs.setMessage("list userId success...");
         return rs;
