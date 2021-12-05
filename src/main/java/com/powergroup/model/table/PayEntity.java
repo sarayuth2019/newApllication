@@ -64,4 +64,20 @@ public class PayEntity {
     @Column
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date dataTransfer = new Date();
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getPayId() {
+        return payId;
+    }
+
+    public void setPayId(int payId) {
+        this.payId = payId;
+    }
 }

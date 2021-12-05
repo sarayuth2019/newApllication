@@ -94,22 +94,16 @@ public class PayController {
     @PostMapping("/listItemIdByUserId")
     public Object listUserId(int itemId){
         APIResponse rs = new APIResponse();
-        List<PayEntity> data =payRepository.findByItemId(itemId);
-        ArrayList UserId = new ArrayList();
-        ArrayList PayId = new ArrayList();
+        List<PayEntity> data = payRepository.findByItemId(itemId);
+        ArrayList unProcess = new ArrayList();
+        ArrayList process = new ArrayList();
         for (int i = 0; i < data.size(); i++) {
             int x = data.get(i).getUserId();
             int p = data.get(i).getPayId();
-            PayId.add(p);
-            UserId.add(x);
+            int[] y =new int[]{x,p};
+            process.add(y);
         }
-//        List<PayEntity> unique = (List<PayEntity>) UserId.stream()
-//                .sorted()
-//                .distinct()
-//                .collect(Collectors.toList());
-//        System.out.println(unique);
-        rs.setData(UserId);
-        rs.setData1(PayId);
+        rs.setData1(process);
         rs.setStatus(1);
         rs.setMessage("list userId success...");
         return rs;
