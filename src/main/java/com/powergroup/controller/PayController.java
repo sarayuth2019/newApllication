@@ -96,8 +96,11 @@ public class PayController {
         APIResponse rs = new APIResponse();
         List<PayEntity> data =payRepository.findByItemId(itemId);
         ArrayList UserId = new ArrayList();
+        ArrayList PayId = new ArrayList();
         for (int i = 0; i < data.size(); i++) {
             int x = data.get(i).getUserId();
+            int p = data.get(i).getPayId();
+            PayId.add(p);
             UserId.add(x);
         }
         List<PayEntity> unique = (List<PayEntity>) UserId.stream()
@@ -106,6 +109,7 @@ public class PayController {
                 .collect(Collectors.toList());
         System.out.println(unique);
         rs.setData(unique);
+        rs.setData1(PayId);
         rs.setStatus(1);
         rs.setMessage("list userId success...");
         return rs;

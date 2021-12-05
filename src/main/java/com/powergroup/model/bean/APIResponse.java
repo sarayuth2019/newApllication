@@ -9,4 +9,5 @@ public class APIResponse {
     private int status;
     private String message;
     private Object data;
+    private Object data1;
 }
