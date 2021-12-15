@@ -100,7 +100,7 @@ public class PayController {
         for (int i = 0; i < data.size(); i++) {
             int x = data.get(i).getUserId();
             int p = data.get(i).getPayId();
-            int[] y =new int[]{x,p};
+            int[] y =new int[]{ + x,p};
             process.add(y);
         }
         rs.setData1(process);
