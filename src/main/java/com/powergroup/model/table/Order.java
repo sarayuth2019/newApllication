@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @ToString
@@ -24,7 +26,7 @@ public class Order {
     private String nameOrder;
 
     @Column
-    private String[] detail;
+    private ArrayList detail;
 
 //    @Column
 //    private int priceSell;
