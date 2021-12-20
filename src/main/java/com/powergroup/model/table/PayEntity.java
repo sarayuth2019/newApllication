@@ -14,7 +14,7 @@ import java.util.Date;
 public class PayEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "pay_id")
     private int payId;
 
     @Column
@@ -22,6 +22,9 @@ public class PayEntity {
 
     @Column
     private int userId;
+
+    @Column
+    private int orderId;
 
     @Column
     private int marketId;

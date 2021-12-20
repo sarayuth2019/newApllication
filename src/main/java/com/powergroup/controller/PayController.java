@@ -108,4 +108,13 @@ public class PayController {
         rs.setMessage("list userId success...");
         return rs;
     }
+    @PostMapping("/listOrderId")
+    public Object listOrderId(int orderId){
+        APIResponse response = new APIResponse();
+        var data = payRepository.findByOrderId(orderId);
+        response.setMessage("list Payment by OrderId...");
+        response.setData(data);
+        response.setStatus(1);
+        return response;
+    }
 }
