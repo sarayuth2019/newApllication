@@ -8,7 +8,6 @@ import java.util.List;
 
 @Transactional
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    List<Order> findByNameOrder(String nameOrder);
 
     List<Order> findByUserId(int userId);
 

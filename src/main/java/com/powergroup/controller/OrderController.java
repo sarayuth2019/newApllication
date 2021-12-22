@@ -62,23 +62,23 @@ public class OrderController {
     public Object delete(int id) {
         APIResponse res = new APIResponse();
         Optional<Order> data = orderRepository.findById(id);
-        String name = data.get().getNameOrder();
+//        String name = data.get().getNameOrder();
         orderRepository.deleteById(id);
         res.setData(data);
         res.setStatus(1);
-        res.setMessage("delete "+name+" success...");
+        res.setMessage("delete success...");
         return res;
     }
 
-    @PostMapping("/find/name")
-    public Object find(String name) {
-        APIResponse res = new APIResponse();
-        List<Order> getList = this.orderRepository.findByNameOrder(name);
-        res.setData(getList);
-        res.setMessage("Find By name Order...");
-        res.setStatus(1);
-        return res;
-    }
+//    @PostMapping("/find/name")
+//    public Object find(String name) {
+//        APIResponse res = new APIResponse();
+//        List<Order> getList = this.orderRepository.findByNameOrder(name);
+//        res.setData(getList);
+//        res.setMessage("Find By name Order...");
+//        res.setStatus(1);
+//        return res;
+//    }
 
     @PostMapping("/find/user")
     public Object findUserId(@PathVariable int user) {

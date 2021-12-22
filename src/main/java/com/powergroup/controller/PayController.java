@@ -91,23 +91,22 @@ public class PayController {
 //        return response;
 //    }
 //
-//    @PostMapping("/listItemIdByUserId")
-////    public Object listUserId(int itemId){
-////        APIResponse rs = new APIResponse();
-////        List<PayEntity> data = payRepository.findByItemId(itemId);
-////        ArrayList unProcess = new ArrayList();
-////        ArrayList process = new ArrayList();
-////        for (int i = 0; i < data.size(); i++) {
-////            int x = data.get(i).getUserId();
-////            int p = data.get(i).getPayId();
-////            int[] y =new int[]{ + x,p};
-////            process.add(y);
-////        }
-////        rs.setData1(process);
-////        rs.setStatus(1);
-////        rs.setMessage("list userId success...");
-////        return rs;
-////    }
+    @PostMapping("/listPayIdByUserId")
+    public Object listUserId(int payId){
+        APIResponse rs = new APIResponse();
+        List<PayEntity> data = payRepository.findByPayId(payId);
+        ArrayList process = new ArrayList();
+        for (int i = 0; i < data.size(); i++) {
+            int x = data.get(i).getUserId();
+            int p = data.get(i).getPayId();
+            int[] y =new int[]{x,p};
+            process.add(y);
+        }
+        rs.setData1(process);
+        rs.setStatus(1);
+        rs.setMessage("list userId success...");
+        return rs;
+    }
     @PostMapping("/listOrderId")
     public Object listOrderId(int orderId){
         APIResponse response = new APIResponse();
