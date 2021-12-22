@@ -22,9 +22,6 @@ public class Order {
     @Column
     private String status;
 
-    @Column(name = "name_order")
-    private String nameOrder;
-
     @Column
     private ArrayList detail;
 
