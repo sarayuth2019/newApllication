@@ -30,12 +30,6 @@ public class PayEntity {
     private int marketId;
 
     @Column
-    private int number;
-
-    @Column
-    private int itemId;
-
-    @Column
     private String detail;
 
     @Column

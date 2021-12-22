@@ -8,7 +8,7 @@ import java.util.List;
 
 @Transactional
 public interface PayRepository extends JpaRepository<PayEntity,Integer> {
-    List<PayEntity> findByItemId(int itemId);
+//    List<PayEntity> findByItemId(int itemId);
     List<PayEntity> findByOrderId(int orderId);
     List<PayEntity> findByUserId(int userId);
     List<PayEntity> findByMarketId(int marketId);
