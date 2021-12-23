@@ -116,4 +116,15 @@ public class PayController {
         response.setStatus(1);
         return response;
     }
+    @PostMapping("/deleteByPayId")
+    public Object delete(int payId){
+        APIResponse response = new APIResponse();
+        var data = payRepository.findById(payId);
+        var numberPayId = data.get().getPayId();
+        payRepository.deleteById(payId);
+        response.setStatus(1);
+        response.setData(data);
+        response.setMessage("delete payment "+numberPayId+" success");
+        return response;
+    }
 }

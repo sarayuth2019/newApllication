@@ -22,8 +22,8 @@ public class Order {
     @Column
     private String status;
 
-    @Column
-    private ArrayList detail;
+//    @Column
+//    private ArrayList detail;
 
 //    @Column
 //    private int priceSell;
