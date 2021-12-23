@@ -23,7 +23,7 @@ public class OrderDetailController {
         response.setMessage("save detail order success...");
         return response;
     }
-    @GetMapping("/listByOrderId")
+    @PostMapping("/listByOrderId")
     public Object listOrderId(int orderId){
         APIResponse response = new APIResponse();
         var data= orderDetailRepository.findByOrderId(orderId);
