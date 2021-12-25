@@ -79,7 +79,15 @@ public class OrderController {
 //        res.setStatus(1);
 //        return res;
 //    }
-
+    @PostMapping("/listId")
+    public Object listId(int id){
+        APIResponse response = new APIResponse();
+        var date = orderRepository.findById(id);
+        response.setData(date);
+        response.setStatus(1);
+        response.setMessage("list orderId success...");
+        return response;
+    }
     @PostMapping("/find/user")
     public Object findUserId(@PathVariable int user) {
         APIResponse res = new APIResponse();
