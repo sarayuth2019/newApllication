@@ -2,7 +2,9 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.bean.ImagesReponse;
+import com.powergroup.model.service.OrderRepository;
 import com.powergroup.model.service.PayRepository;
+import com.powergroup.model.table.Order;
 import com.powergroup.model.table.PayEntity;
 import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 public class PayController {
     @Autowired
     private PayRepository payRepository;
+    @Autowired
+    private OrderRepository orderRepository;
     @Autowired
     private ContextUtil contextUtil;
     @PostMapping("/save")
@@ -92,15 +96,22 @@ public class PayController {
 //    }
 //
     @PostMapping("/listPayIdByUserId")
-    public Object listUserId(int payId){
+    public Object listUserId(int itemId){
         APIResponse rs = new APIResponse();
-        List<PayEntity> data = payRepository.findByPayId(payId);
+        int orderId = 0;
         ArrayList process = new ArrayList();
-        for (int i = 0; i < data.size(); i++) {
-            int x = data.get(i).getUserId();
-            int p = data.get(i).getPayId();
-            int[] y =new int[]{x,p};
-            process.add(y);
+        List<Order> data1 = orderRepository.findByItemId(itemId);
+        for (int i = 0; i < data1.size(); i++) {
+//            System.out.println(data1.get(i).getUserId());
+            orderId = data1.get(i).getOrderId();
+            List<PayEntity> data = payRepository.findByOrderId(orderId);
+            for (int j = 0; j < data.size(); j++) {
+                int payId = data.get(j).getPayId();
+                int userId = data.get(j).getUserId();
+                int[] y = new int[]{payId,userId};
+                process.add(y);
+                System.out.println(process);
+            }
         }
         rs.setData1(process);
         rs.setStatus(1);
