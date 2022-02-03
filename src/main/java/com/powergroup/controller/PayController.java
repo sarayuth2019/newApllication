@@ -108,7 +108,7 @@ public class PayController {
             for (int j = 0; j < data.size(); j++) {
                 int payId = data.get(j).getPayId();
                 int userId = data.get(j).getUserId();
-                int[] y = new int[]{payId,userId};
+                int[] y = new int[]{userId,payId};
                 process.add(y);
                 System.out.println(process);
             }
