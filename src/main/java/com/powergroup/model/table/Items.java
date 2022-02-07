@@ -63,4 +63,13 @@ public class Items {
     @Column(name = "create_date")
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")
     private Date createDate = new Date();
+
+    public Date getDateBegin() {
+        return dateBegin;
+    }
+
+    public Date getDateFinal() {
+        return dateFinal;
+    }
+
 }

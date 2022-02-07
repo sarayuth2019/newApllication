@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -13,4 +14,5 @@ public interface ItemRepository extends JpaRepository<Items, Integer> {
     List<Items> findByNameItems(String nameItems);
     List<Items> findByMarketId(int marketId);
     List<Items> findByGroupItems(int groupItems);
+    List<Items> findByDateFinal(Date dealFinal);
 }

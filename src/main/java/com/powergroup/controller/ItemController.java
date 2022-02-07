@@ -7,6 +7,8 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,7 +91,7 @@ public class ItemController {
         return res;
     }
 
-    @PostMapping("find/group")
+    @PostMapping("/find/group")
     public Object findGroup(int group) {
         APIResponse res = new APIResponse();
         List<Items> getGroup = this.itemRepository.findByGroupItems(group);
@@ -97,6 +99,22 @@ public class ItemController {
         res.setData(getGroup);
         res.setStatus(1);
         return res;
+    }
+    @GetMapping("/ListProduct")
+    public Object listProduct(){
+        APIResponse response = new APIResponse();
+        Date localDate = new Date();
+        List<Items> data = itemRepository.findAll();
+        for (int i = 0; i < data.size(); i++) {
+            var date = data.get(i).getDateFinal();
+            if (localDate.before(date)){
+                List<Items> process = itemRepository.findByDateFinal(date);
+                response.setData(process);
+                response.setStatus(1);
+                response.setMessage("list product success...");
+            }
+        }
+        return response;
     }
 
 }
