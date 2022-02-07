@@ -25,8 +25,8 @@ public class Order {
 //    @Column
 //    private ArrayList detail;
 
-//    @Column
-//    private int priceSell;
+    @Column
+    private int priceSell;
 
     @Column(name = "market_id")
     private int marketId;

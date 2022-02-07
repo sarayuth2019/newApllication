@@ -108,7 +108,7 @@ public class ItemController {
         List<Items> data = itemRepository.findAll();
         for (int i = 0; i < data.size(); i++) {
             var date = data.get(i).getDealFinal();
-            if (localDate.before(date)){
+            if (date.after(localDate)){
                 List<Items> process = itemRepository.findByDealFinal(date);
                 response.setData(process);
                 response.setStatus(1);

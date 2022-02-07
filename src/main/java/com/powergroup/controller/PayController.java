@@ -95,7 +95,7 @@ public class PayController {
 //        return response;
 //    }
 //
-    @PostMapping("/listPayIdByUserId")
+    @PostMapping("/listUserIdAndPayIdByItemId")
     public Object listUserId(int itemId){
         APIResponse rs = new APIResponse();
         int orderId = 0;

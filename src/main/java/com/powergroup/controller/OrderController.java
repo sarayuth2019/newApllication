@@ -28,7 +28,15 @@ public class OrderController {
         res.setData(order);
         return res;
     }
-
+    @PostMapping("/listOrderByItemId")
+    public Object listOrder(int itemId){
+        APIResponse res = new APIResponse();
+        List<Order> data = orderRepository.findByItemId(itemId);
+        res.setData(data);
+        res.setStatus(1);
+        res.setMessage("list order by itemId...");
+        return res;
+    }
     @PostMapping("/update")
     public Object update(Order order) {
         APIResponse response = new APIResponse();
