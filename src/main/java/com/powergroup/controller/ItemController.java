@@ -104,11 +104,12 @@ public class ItemController {
     public Object listProduct(){
         APIResponse response = new APIResponse();
         Date localDate = new Date();
+        System.out.println(localDate);
         List<Items> data = itemRepository.findAll();
         for (int i = 0; i < data.size(); i++) {
-            var date = data.get(i).getDateFinal();
+            var date = data.get(i).getDealFinal();
             if (localDate.before(date)){
-                List<Items> process = itemRepository.findByDateFinal(date);
+                List<Items> process = itemRepository.findByDealFinal(date);
                 response.setData(process);
                 response.setStatus(1);
                 response.setMessage("list product success...");

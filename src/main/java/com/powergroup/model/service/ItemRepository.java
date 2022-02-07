@@ -14,5 +14,5 @@ public interface ItemRepository extends JpaRepository<Items, Integer> {
     List<Items> findByNameItems(String nameItems);
     List<Items> findByMarketId(int marketId);
     List<Items> findByGroupItems(int groupItems);
-    List<Items> findByDateFinal(Date dealFinal);
+    List<Items> findByDealFinal(Date dealFinal);
 }

@@ -72,4 +72,7 @@ public class Items {
         return dateFinal;
     }
 
+    public Date getDealFinal() {
+        return dealFinal;
+    }
 }
