@@ -145,7 +145,7 @@ public class MarketController {
         res.setMessage("list market by Id...");
         return res;
     }
-    @GetMapping("/listPaymentByItemId")
+    @GetMapping("/listItemIdByCountRequest")
     public Object listPay(){
         APIResponse res = new APIResponse();
         List<Items> data = itemRepository.findAll();
