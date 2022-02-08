@@ -2,8 +2,9 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.bean.ImagesReponse;
+import com.powergroup.model.service.ItemRepository;
 import com.powergroup.model.service.MarketRepository;
-import com.powergroup.model.service.UserService;
+import com.powergroup.model.table.Items;
 import com.powergroup.model.table.Market;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
@@ -12,7 +13,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Provider;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -34,6 +36,9 @@ public class MarketController {
 
     @Autowired
     private MarketRepository marketRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;
@@ -138,6 +143,27 @@ public class MarketController {
         res.setDataId(data);
         res.setStatus(1);
         res.setMessage("list market by Id...");
+        return res;
+    }
+    @GetMapping("/listPaymentByItemId")
+    public Object listPay(){
+        APIResponse res = new APIResponse();
+        List<Items> data = itemRepository.findAll();
+        List<Optional> output = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            int x = data.get(i).getCount();
+            int y = data.get(i).getCountRequest();
+            int id = data.get(i).getItemId();
+            if (x == y){
+                Optional<Items>  process =   itemRepository.findById(id);
+                output.add(process);
+            }
+            System.out.println(output);
+            res.setMessage("list Payment By itemId success...");
+            res.setData(output);
+            res.setStatus(1);
+        }
+
         return res;
     }
 }
