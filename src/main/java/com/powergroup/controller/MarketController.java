@@ -2,10 +2,10 @@ package com.powergroup.controller;
 
 import com.powergroup.model.bean.APIResponse;
 import com.powergroup.model.bean.ImagesReponse;
-import com.powergroup.model.service.ItemRepository;
-import com.powergroup.model.service.MarketRepository;
+import com.powergroup.model.service.*;
 import com.powergroup.model.table.Items;
 import com.powergroup.model.table.Market;
+import com.powergroup.model.table.PaymentAdmin;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
 import com.powergroup.util.ResourceIdGenerate;
@@ -39,6 +39,12 @@ public class MarketController {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private PayAdminRepository payAdminRepository;
 
     @Autowired
     private EncoderUtil encoderUtil;
@@ -145,25 +151,5 @@ public class MarketController {
         res.setMessage("list market by Id...");
         return res;
     }
-    @GetMapping("/listItemIdByCountRequest")
-    public Object listPay(){
-        APIResponse res = new APIResponse();
-        List<Items> data = itemRepository.findAll();
-        List<Optional> output = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            int x = data.get(i).getCount();
-            int y = data.get(i).getCountRequest();
-            int id = data.get(i).getItemId();
-            if (x == y){
-                Optional<Items>  process =   itemRepository.findById(id);
-                output.add(process);
-            }
-            System.out.println(output);
-            res.setMessage("list Payment By itemId success...");
-            res.setData(output);
-            res.setStatus(1);
-        }
 
-        return res;
-    }
 }
