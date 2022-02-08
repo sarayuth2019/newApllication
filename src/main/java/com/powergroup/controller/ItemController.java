@@ -7,7 +7,7 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -104,16 +104,20 @@ public class ItemController {
     public Object listProduct(){
         APIResponse response = new APIResponse();
         Date localDate = new Date();
+        List<Items> process = new ArrayList<>();
         System.out.println(localDate);
+
         List<Items> data = itemRepository.findAll();
         for (int i = 0; i < data.size(); i++) {
             var date = data.get(i).getDealFinal();
             if (date.after(localDate)){
-                List<Items> process = itemRepository.findByDealFinal(date);
-                response.setData(process);
-                response.setStatus(1);
-                response.setMessage("list product success...");
+                 List<Items> x = itemRepository.findByDealFinal(date);
+                 process.addAll(x);
             }
+            System.out.println(process);
+            response.setData(process);
+            response.setStatus(1);
+            response.setMessage("list product success...");
         }
         return response;
     }
