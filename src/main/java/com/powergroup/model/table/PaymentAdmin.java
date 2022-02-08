@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity(name = "payment_admin_entity")
 public class PaymentAdmin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pay_id")
     private int payId;
 
@@ -31,10 +31,6 @@ public class PaymentAdmin {
 
     @Column
     private int amount;
-
-    @Column
-    //เลขท้ายบัญชี
-    private int lastNumber;
 
     @Column
     //ธนาคารที่โอนเงิน

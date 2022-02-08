@@ -51,6 +51,7 @@ public class Market {
     @Column
     private String nameMarket;
 
+
     @Column
     private String descriptionMarket;
 

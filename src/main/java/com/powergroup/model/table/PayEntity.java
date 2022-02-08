@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity(name = "pay_entity")
 public class PayEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pay_id")
     private int payId;
 
