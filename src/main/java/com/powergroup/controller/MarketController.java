@@ -151,5 +151,14 @@ public class MarketController {
         res.setMessage("list market by Id...");
         return res;
     }
+    @PostMapping("/listMarketByStatusPayAdmin")
+    public Object lstAdmin(int marketId,String status){
+        APIResponse rs = new APIResponse();
+        List<PaymentAdmin> list = payAdminRepository.findByStatusAndMarketId(status,marketId);
+        rs.setData(list);
+        rs.setStatus(1);
+        rs.setMessage("list status adn marketId...");
+        return rs;
+    }
 
 }

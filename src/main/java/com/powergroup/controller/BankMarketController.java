@@ -25,6 +25,16 @@ public class BankMarketController {
         res.setStatus(1);
         return res;
     }
+    @PostMapping("/update")
+    public Object update(BankMarket bankMarket){
+        APIResponse rs = new APIResponse();
+        bankMarket.setBankMarketId(bankMarket.getMarketId());
+        var save = bankMarketRepository.save(bankMarket);
+        rs.setMessage("update success");
+        rs.setData(save);
+        rs.setStatus(1);
+        return rs;
+    }
     @PostMapping("/listBankByMarketId")
     public Object listBank(int marketId){
         APIResponse rs = new APIResponse();

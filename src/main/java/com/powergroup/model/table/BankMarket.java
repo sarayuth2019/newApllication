@@ -21,6 +21,9 @@ public class BankMarket {
     private int marketId;
 
     @Column
+    private String bankAccountName;
+
+    @Column
     private int nameBank;
 
     @Column

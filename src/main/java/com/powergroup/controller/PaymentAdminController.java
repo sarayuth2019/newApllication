@@ -41,6 +41,16 @@ public class PaymentAdminController {
         response.setMessage("success...");
         return response;
     }
+    @PostMapping("/update")
+    public Object update(PaymentAdmin paymentAdmin){
+        APIResponse rs = new APIResponse();
+        paymentAdmin.setAdminId(paymentAdmin.getAdminId());
+        var save = payAdminRepository.save(paymentAdmin);
+        rs.setData(save);
+        rs.setMessage("update success...");
+        rs.setStatus(1);
+        return rs;
+    }
     @GetMapping("/list")
     public Object list(){
         APIResponse res= new APIResponse();
@@ -49,6 +59,15 @@ public class PaymentAdminController {
         res.setData(data);
         res.setStatus(1);
         return res;
+    }
+    @PostMapping("/listMarket")
+    public Object listMarket(int marketId){
+        APIResponse rs = new APIResponse();
+        List<PaymentAdmin> admins = payAdminRepository.findByMarketId(marketId);
+        rs.setMessage("list pay admin...");
+        rs.setStatus(1);
+        rs.setData(admins);
+        return rs;
     }
     @GetMapping("/listPending")
     public Object listPending(){
@@ -71,6 +90,30 @@ public class PaymentAdminController {
         }
         res.setStatus(1);
         res.setMessage("รอดำเนินการ...");
+        res.setData(process);
+        return res;
+    }
+    @GetMapping("/listCheckPay")
+    public Object checkPay(){
+        APIResponse res = new APIResponse();
+        List<Optional> process = new ArrayList<>();
+        String status = "รอตรวจสอบจากร้านค้า";
+        List<PaymentAdmin> data = payAdminRepository.findByStatus(status);
+        for (int i = 0; i < data.size(); i++) {
+            int marketId = data.get(i).getMarketId();
+            List<Items> data1 = itemRepository.findByMarketId(marketId);
+            for (int j = 0; j < data1.size(); j++) {
+                int itemId = data1.get(j).getItemId();
+                Optional<Items> output = itemRepository.findById(itemId);
+                int x = output.get().getCount();
+                int y = output.get().getCountRequest();
+                if (x == y){
+                    process.add(output);
+                }
+            }
+        }
+        res.setStatus(1);
+        res.setMessage("รอตรวจสอบจากร้านค้า...");
         res.setData(process);
         return res;
     }

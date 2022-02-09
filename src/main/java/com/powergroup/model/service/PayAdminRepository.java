@@ -13,4 +13,5 @@ public interface PayAdminRepository extends JpaRepository<PaymentAdmin,Integer> 
     List<PaymentAdmin> findByAdminId(int adminId);
     List<PaymentAdmin> findByMarketId(int marketId);
     List<PaymentAdmin> findByStatus(String status);
+    List<PaymentAdmin> findByStatusAndMarketId(String status,int marketId);
 }
