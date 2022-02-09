@@ -27,6 +27,9 @@ public class PaymentAdmin {
     private int marketId;
 
     @Column
+    private int itemId;
+
+    @Column
     private String detail;
 
     @Column

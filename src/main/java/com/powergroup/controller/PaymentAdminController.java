@@ -51,6 +51,16 @@ public class PaymentAdminController {
         rs.setStatus(1);
         return rs;
     }
+    @PostMapping("/listByItemId")
+    public Object listItem(int itemId){
+        APIResponse rs=  new APIResponse();
+        List<PaymentAdmin> list = payAdminRepository.findByItemId(itemId);
+//        var o = itemRepository.findById(itemId);
+        rs.setMessage("list pay admin by itemId....");
+        rs.setStatus(1);
+        rs.setData(list);
+        return rs;
+    }
     @GetMapping("/list")
     public Object list(){
         APIResponse res= new APIResponse();
@@ -165,4 +175,5 @@ public class PaymentAdminController {
         res.setData(process);
         return res;
     }
+
 }
