@@ -24,7 +24,7 @@ public class BankMarket {
     private String bankAccountName;
 
     @Column
-    private int nameBank;
+    private String nameBank;
 
     @Column
     private int bankNumber;

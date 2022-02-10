@@ -44,7 +44,7 @@ public class PaymentAdminController {
     @PostMapping("/update")
     public Object update(PaymentAdmin paymentAdmin){
         APIResponse rs = new APIResponse();
-        paymentAdmin.setAdminId(paymentAdmin.getAdminId());
+        paymentAdmin.setAdminId(paymentAdmin.getPayId());
         var save = payAdminRepository.save(paymentAdmin);
         rs.setData(save);
         rs.setMessage("update success...");
