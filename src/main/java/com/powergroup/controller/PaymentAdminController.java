@@ -8,10 +8,7 @@ import com.powergroup.model.table.PaymentAdmin;
 import com.powergroup.util.ContextUtil;
 import com.powergroup.util.EncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +38,9 @@ public class PaymentAdminController {
         response.setMessage("success...");
         return response;
     }
-    @PostMapping("/update")
-    public Object update(PaymentAdmin paymentAdmin){
+    @PostMapping("/update/{payId}")
+    public Object update(@PathVariable int payId, PaymentAdmin paymentAdmin){
         APIResponse rs = new APIResponse();
-        paymentAdmin.setAdminId(paymentAdmin.getPayId());
         var save = payAdminRepository.save(paymentAdmin);
         rs.setData(save);
         rs.setMessage("update success...");
