@@ -28,7 +28,7 @@ public class BankMarketController {
     @PostMapping("/update")
     public Object update(BankMarket bankMarket){
         APIResponse rs = new APIResponse();
-        bankMarket.setBankMarketId(bankMarket.getMarketId());
+        bankMarket.setBankMarketId(bankMarket.getBankMarketId());
         var save = bankMarketRepository.save(bankMarket);
         rs.setMessage("update success");
         rs.setData(save);
