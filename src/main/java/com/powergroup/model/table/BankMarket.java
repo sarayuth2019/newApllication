@@ -27,7 +27,7 @@ public class BankMarket {
     private String nameBank;
 
     @Column
-    private int bankNumber;
+    private String bankNumber;
 
     @Column
     @JsonFormat(timezone = "Asia/Bangkok", pattern = "HH.mm.ss dd/MMM/yyyy")

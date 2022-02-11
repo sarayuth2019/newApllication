@@ -19,8 +19,8 @@ public class BankMarketController {
     @PostMapping("/save")
     public Object save(BankMarket bankMarket) {
         APIResponse res = new APIResponse();
-        BankMarket data = bankMarketRepository.save(bankMarket);
-        res.setData(data);
+        bankMarketRepository.save(bankMarket);
+        res.setData(bankMarket);
         res.setMessage("save success...");
         res.setStatus(1);
         return res;

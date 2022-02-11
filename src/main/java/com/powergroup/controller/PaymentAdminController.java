@@ -82,16 +82,12 @@ public class PaymentAdminController {
         String status = "รอดำเนินการ";
         List<PaymentAdmin> data = payAdminRepository.findByStatus(status);
         for (int i = 0; i < data.size(); i++) {
-            int marketId = data.get(i).getMarketId();
-            List<Items> data1 = itemRepository.findByMarketId(marketId);
-            for (int j = 0; j < data1.size(); j++) {
-                int itemId = data1.get(j).getItemId();
-                Optional<Items> output = itemRepository.findById(itemId);
-                int x = output.get().getCount();
-                int y = output.get().getCountRequest();
-                if (x == y){
-                    process.add(output);
-                }
+            int itemId = data.get(i).getItemId();
+            var optionalItems= itemRepository.findById(itemId);
+            int count = optionalItems.get().getCount();
+            int countRequest = optionalItems.get().getCountRequest();
+            if (count == countRequest){
+                process.add(optionalItems);
             }
         }
         res.setStatus(1);
@@ -106,16 +102,12 @@ public class PaymentAdminController {
         String status = "รอตรวจสอบจากร้านค้า";
         List<PaymentAdmin> data = payAdminRepository.findByStatus(status);
         for (int i = 0; i < data.size(); i++) {
-            int marketId = data.get(i).getMarketId();
-            List<Items> data1 = itemRepository.findByMarketId(marketId);
-            for (int j = 0; j < data1.size(); j++) {
-                int itemId = data1.get(j).getItemId();
-                Optional<Items> output = itemRepository.findById(itemId);
-                int x = output.get().getCount();
-                int y = output.get().getCountRequest();
-                if (x == y){
-                    process.add(output);
-                }
+            int itemId = data.get(i).getItemId();
+            var optionalItems= itemRepository.findById(itemId);
+            int count = optionalItems.get().getCount();
+            int countRequest = optionalItems.get().getCountRequest();
+            if (count == countRequest){
+                process.add(optionalItems);
             }
         }
         res.setStatus(1);
@@ -130,16 +122,12 @@ public class PaymentAdminController {
         String status = "ชำระเงินผิดพลาด";
         List<PaymentAdmin> data = payAdminRepository.findByStatus(status);
         for (int i = 0; i < data.size(); i++) {
-            int marketId = data.get(i).getMarketId();
-            List<Items> data1 = itemRepository.findByMarketId(marketId);
-            for (int j = 0; j < data1.size(); j++) {
-                int itemId = data1.get(j).getItemId();
-                Optional<Items> output = itemRepository.findById(itemId);
-                int x = output.get().getCount();
-                int y = output.get().getCountRequest();
-                if (x == y){
-                    process.add(output);
-                }
+            int itemId = data.get(i).getItemId();
+            var optionalItems= itemRepository.findById(itemId);
+            int count = optionalItems.get().getCount();
+            int countRequest = optionalItems.get().getCountRequest();
+            if (count == countRequest){
+                process.add(optionalItems);
             }
         }
         res.setStatus(1);
@@ -154,16 +142,12 @@ public class PaymentAdminController {
         String status = "ชำระเงินสำเร็จ";
         List<PaymentAdmin> data = payAdminRepository.findByStatus(status);
         for (int i = 0; i < data.size(); i++) {
-            int marketId = data.get(i).getMarketId();
-            List<Items> data1 = itemRepository.findByMarketId(marketId);
-            for (int j = 0; j < data1.size(); j++) {
-                int itemId = data1.get(j).getItemId();
-                Optional<Items> output = itemRepository.findById(itemId);
-                int x = output.get().getCount();
-                int y = output.get().getCountRequest();
-                if (x == y){
-                    process.add(output);
-                }
+            int itemId = data.get(i).getItemId();
+            var optionalItems= itemRepository.findById(itemId);
+            int count = optionalItems.get().getCount();
+            int countRequest = optionalItems.get().getCountRequest();
+            if (count == countRequest){
+                process.add(optionalItems);
             }
         }
         res.setStatus(1);
