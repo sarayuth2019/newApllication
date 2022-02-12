@@ -7,10 +7,7 @@ import com.powergroup.util.ContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/Item")
@@ -33,6 +30,7 @@ public class ItemController {
     @PostMapping("/update")
     public Object update(Items items) {
         APIResponse response = new APIResponse();
+        items.setItemId(items.getItemId());
         itemRepository.save(items);
         response.setMessage("update success...");
         response.setStatus(1);
@@ -114,8 +112,10 @@ public class ItemController {
                  List<Items> x = itemRepository.findByDealFinal(date);
                  process.addAll(x);
             }
-            System.out.println(process);
-            response.setData(process);
+            Set set = new LinkedHashSet(process);
+            ArrayList remove = new ArrayList(set);
+            System.out.println(remove);
+            response.setData(remove);
             response.setStatus(1);
             response.setMessage("list product success...");
         }

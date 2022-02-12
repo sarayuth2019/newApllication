@@ -25,6 +25,15 @@ public class BankMarketController {
         res.setStatus(1);
         return res;
     }
+    @PostMapping("/deleteByBankMarketId")
+    public Object delete(int bankMarketId){
+        APIResponse rs = new APIResponse();
+        bankMarketRepository.deleteById(bankMarketId);
+        rs.setData(bankMarketId);
+        rs.setMessage("delete bankMarket success...");
+        rs.setStatus(1);
+        return rs;
+    }
     @PostMapping("/update/{bankMarketId}")
     public Object update(@PathVariable int bankMarketId,BankMarket bankMarket){
         APIResponse rs = new APIResponse();
